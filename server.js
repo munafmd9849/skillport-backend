@@ -134,7 +134,13 @@ app.get('*', (req, res) => {
 });
 
 // Connect to MongoDB and start server
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/skillport';
+//const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/skillport';
+if (!process.env.MONGODB_URI) {
+  console.error("❌ MONGODB_URI environment variable not set. Exiting...");
+  process.exit(1);
+}
+const MONGODB_URI = process.env.MONGODB_URI;
+
 
 console.log('Attempting to connect to MongoDB...');
 
