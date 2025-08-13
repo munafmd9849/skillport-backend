@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillPort Coding Stats Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f8fa 0%, #e0e7ff 100%); }
+    .glass-card { background: rgba(255,255,255,0.85); box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10); backdrop-filter: blur(8px); border-radius: 1.5rem; }
+    .stat-badge { font-size: 0.95rem; border-radius: 0.7rem; padding: 0.2rem 0.8rem; font-weight: 600; }
+    .tab-btn { border: none; background: none; font-weight: 600; font-size: 1.1rem; padding: 0.7rem 2rem; border-radius: 1rem; transition: background 0.2s, color 0.2s; }
+    .tab-btn.active { background: #eff6ff; color: #2563eb; }
+    .tab-btn:not(.active):hover { background: #f1f5f9; color: #334155; }
+    .platform-card { transition: box-shadow 0.15s, transform 0.15s; }
+    .platform-card:hover { box-shadow: 0 8px 32px 0 rgba(80,80,180,0.12); transform: translateY(-2px) scale(1.01); }
+    .progress-bar { height: 8px; border-radius: 6px; background: #f1f5f9; overflow: hidden; }
+    .progress-bar-inner { height: 100%; border-radius: 6px; transition: width 0.5s; }
+    .badge-outline { border: 1px solid #e5e7eb; background: #fff; color: #64748b; border-radius: 0.6rem; font-size: 0.85rem; padding: 0.15rem 0.7rem; font-weight: 500; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navbar (reuse from student-dashboard.html) -->
+  <nav class="w-100 bg-white border-b border-gray-100 py-2 px-0 sticky-top" style="z-index: 1000;">
+    <div class="container-fluid d-flex align-items-center justify-content-between px-4">
+      <div class="d-flex align-items-center gap-2">
+        <div class="rounded-2xl bg-indigo-500 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+          <i class="fas fa-star-of-life text-white fs-4"></i>
+        </div>
+        <span class="fw-bold fs-4 text-gray-800 ms-2">SkillPort</span>
+      </div>
+      <ul class="d-flex align-items-center gap-2 mb-0" style="list-style: none;">
+        <li><a href="student-dashboard.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+        <li><a href="tracker.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-solid fa-bullseye"></i> Tracker</a></li>
+        <li><a href="stats.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl bg-blue-50 text-blue-700 fw-semibold" style="font-size: 1.1rem;"><i class="fa-solid fa-chart-bar"></i> Stats</a></li>
+        <li><a href="profile.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-regular fa-user"></i> Profile</a></li>
+        <li><a href="projects.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-regular fa-folder-open"></i> Projects</a></li>
+        <li><a href="posts.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-regular fa-paper-plane"></i> Posts</a></li>
+        <li><a href="communities.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-regular fa-users"></i> Communities</a></li>
+      </ul>
+      <div class="ms-3">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="avatar shadow" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-xl px-4 py-4">
+    <!-- Header Card -->
+    <div class="glass-card border border-slate-200 p-5 mb-4 d-flex flex-wrap align-items-center justify-content-between gap-4">
+      <div class="d-flex align-items-center gap-3">
+        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg d-flex align-items-center justify-content-center" style="width:48px;height:48px;">
+          <i class="fa-solid fa-chart-bar text-white fs-3"></i>
+        </div>
+        <div>
+          <h1 class="fs-3 fw-bold text-slate-900 mb-1">Coding Stats Dashboard</h1>
+          <div class="text-slate-600">Track your progress across all platforms</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-3 ms-auto">
+        <div class="text-center me-2">
+          <div class="fs-3 fw-bold text-slate-900">87</div>
+          <div class="text-sm text-slate-600">Credibility Score</div>
+        </div>
+        <button class="btn btn-primary btn-lg shadow bg-gradient-to-r from-purple-600 to-pink-600 border-0" id="syncAllBtn">
+          <i class="fa-solid fa-arrows-rotate me-2"></i> Sync All
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="glass-card border border-slate-200 p-3 mb-4">
+      <div class="d-flex gap-2 mb-4">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="platforms">Platforms</button>
+        <button class="tab-btn" data-tab="analytics">Analytics</button>
+      </div>
+      <div id="tab-overview" class="tab-content">
+        <!-- Overview Stat Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                  <i class="fa-solid fa-code text-white fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-semibold text-slate-900">Total Problems</div>
+                  <div class="fs-3 fw-bold text-blue-600">570</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-1 text-success">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span>+23 this week</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                  <i class="fa-solid fa-bolt text-white fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-semibold text-slate-900">Active Streak</div>
+                  <div class="fs-3 fw-bold text-success">23 days</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-1 text-success">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span>Personal best!</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between" style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);">
+              <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                  <i class="fa-solid fa-trophy text-white fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-semibold text-slate-900">Achievements</div>
+                  <div class="fs-3 fw-bold text-purple-600">47</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-1 text-success">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span>+3 this month</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Platform Cards -->
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="glass-card platform-card p-4 h-100">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-500 rounded-lg d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                    <i class="fa-solid fa-code text-white fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="fw-semibold text-slate-900">LeetCode</div>
+                    <div class="text-xs text-slate-500">Updated 2 hours ago</div>
+                  </div>
+                </div>
+                <button class="btn btn-link p-0 text-gray-500"><i class="fa-solid fa-arrows-rotate"></i></button>
+              </div>
+              <div class="row g-2 mb-2">
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-orange-600">247</div>
+                  <div class="text-xs text-slate-600">Problems Solved</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-yellow-600">1,456</div>
+                  <div class="text-xs text-slate-600">Contest Rating</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-orange-400">12,847</div>
+                  <div class="text-xs text-slate-600">Global Rank</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-yellow-400">67%</div>
+                  <div class="text-xs text-slate-600">Acceptance Rate</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between text-sm mb-1">
+                <span class="text-slate-600">This Month</span>
+                <span class="text-success fw-medium"><i class="fa-solid fa-arrow-trend-up"></i> +12%</span>
+              </div>
+              <div class="progress-bar mb-2"><div class="progress-bar-inner" style="width:68%;background:linear-gradient(90deg,#f59e42,#fbbf24);"></div></div>
+              <div class="d-flex align-items-center justify-content-between pt-2 border-top border-slate-100 mt-2">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-award text-warning"></i>
+                  <span class="text-sm text-slate-600">Recent Achievement</span>
+                </div>
+                <span class="badge-outline">Streak: 7 days</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="glass-card platform-card p-4 h-100">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 rounded-lg d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                    <i class="fa-brands fa-github text-white fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="fw-semibold text-slate-900">GitHub</div>
+                    <div class="text-xs text-slate-500">Updated 1 hour ago</div>
+                  </div>
+                </div>
+                <button class="btn btn-link p-0 text-gray-500"><i class="fa-solid fa-arrows-rotate"></i></button>
+              </div>
+              <div class="row g-2 mb-2">
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-gray-700">1,234</div>
+                  <div class="text-xs text-slate-600">Contributions</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-gray-700">42</div>
+                  <div class="text-xs text-slate-600">Repositories</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-gray-700">156</div>
+                  <div class="text-xs text-slate-600">Followers</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-gray-700">89</div>
+                  <div class="text-xs text-slate-600">Stars Received</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between text-sm mb-1">
+                <span class="text-slate-600">This Month</span>
+                <span class="text-success fw-medium"><i class="fa-solid fa-arrow-trend-up"></i> +12%</span>
+              </div>
+              <div class="progress-bar mb-2"><div class="progress-bar-inner" style="width:68%;background:linear-gradient(90deg,#374151,#111827);"></div></div>
+              <div class="d-flex align-items-center justify-content-between pt-2 border-top border-slate-100 mt-2">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-award text-warning"></i>
+                  <span class="text-sm text-slate-600">Recent Achievement</span>
+                </div>
+                <span class="badge-outline">Streak: 7 days</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="glass-card platform-card p-4 h-100">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                    <i class="fa-solid fa-bolt text-white fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="fw-semibold text-slate-900">GeeksforGeeks</div>
+                    <div class="text-xs text-slate-500">Updated 3 hours ago</div>
+                  </div>
+                </div>
+                <button class="btn btn-link p-0 text-gray-500"><i class="fa-solid fa-arrows-rotate"></i></button>
+              </div>
+              <div class="row g-2 mb-2">
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-green-600">189</div>
+                  <div class="text-xs text-slate-600">Problems Solved</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-emerald-600">2,847</div>
+                  <div class="text-xs text-slate-600">Monthly Score</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-green-600">23 days</div>
+                  <div class="text-xs text-slate-600">Streak</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-emerald-600">4,521</div>
+                  <div class="text-xs text-slate-600">Rank</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between text-sm mb-1">
+                <span class="text-slate-600">This Month</span>
+                <span class="text-success fw-medium"><i class="fa-solid fa-arrow-trend-up"></i> +12%</span>
+              </div>
+              <div class="progress-bar mb-2"><div class="progress-bar-inner" style="width:68%;background:linear-gradient(90deg,#22c55e,#10b981);"></div></div>
+              <div class="d-flex align-items-center justify-content-between pt-2 border-top border-slate-100 mt-2">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-award text-warning"></i>
+                  <span class="text-sm text-slate-600">Recent Achievement</span>
+                </div>
+                <span class="badge-outline">Streak: 7 days</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="glass-card platform-card p-4 h-100">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg d-flex align-items-center justify-content-center" style="width:40px;height:40px;">
+                    <i class="fa-solid fa-trophy text-white fs-5"></i>
+                  </div>
+                  <div>
+                    <div class="fw-semibold text-slate-900">HackerRank</div>
+                    <div class="text-xs text-slate-500">Updated 5 hours ago</div>
+                  </div>
+                </div>
+                <button class="btn btn-link p-0 text-gray-500"><i class="fa-solid fa-arrows-rotate"></i></button>
+              </div>
+              <div class="row g-2 mb-2">
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-blue-600">134</div>
+                  <div class="text-xs text-slate-600">Problems Solved</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-cyan-600">12</div>
+                  <div class="text-xs text-slate-600">Badges Earned</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-blue-600">5</div>
+                  <div class="text-xs text-slate-600">Certificates</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="fs-5 fw-bold text-cyan-600">2,156</div>
+                  <div class="text-xs text-slate-600">Rank</div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between text-sm mb-1">
+                <span class="text-slate-600">This Month</span>
+                <span class="text-success fw-medium"><i class="fa-solid fa-arrow-trend-up"></i> +12%</span>
+              </div>
+              <div class="progress-bar mb-2"><div class="progress-bar-inner" style="width:68%;background:linear-gradient(90deg,#3b82f6,#06b6d4);"></div></div>
+              <div class="d-flex align-items-center justify-content-between pt-2 border-top border-slate-100 mt-2">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-award text-warning"></i>
+                  <span class="text-sm text-slate-600">Recent Achievement</span>
+                </div>
+                <span class="badge-outline">Streak: 7 days</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-platforms" class="tab-content d-none">
+        <div class="row g-4">
+          <!-- Repeat the same platform cards as above -->
+          <!-- For brevity, you can copy the platform cards from the overview tab -->
+        </div>
+      </div>
+      <div id="tab-analytics" class="tab-content d-none">
+        <div class="glass-card p-5 text-center">
+          <i class="fa-solid fa-chart-bar fs-1 text-indigo-300 mb-3"></i>
+          <h3 class="fs-4 fw-semibold mb-2">Analytics Coming Soon</h3>
+          <p class="text-slate-500">Detailed analytics and insights will be available in the next update.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Tab switching logic
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const tab = this.getAttribute('data-tab');
+        tabContents.forEach(tc => tc.classList.add('d-none'));
+        document.getElementById('tab-' + tab).classList.remove('d-none');
+      });
+    });
+  </script>
+</body>
+</html> 

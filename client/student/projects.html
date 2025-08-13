@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SkillPort – Project Showcase</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Add Font Awesome to head if missing -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .glass {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.04);
+    }
+    .nav-link.active, .nav-link[aria-current="page"] {
+      color: #6366f1 !important;
+      font-weight: 600;
+      background: rgba(99,102,241,0.08);
+      border-radius: 0.5rem;
+    }
+    .badge-featured {
+      background: linear-gradient(90deg, #facc15 0%, #f59e42 100%);
+      color: #fff !important;
+      border: none;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="w-100 bg-white border-b border-gray-100 py-2 px-0 sticky-top" style="z-index: 1000;">
+    <div class="container-fluid d-flex align-items-center justify-content-between px-4">
+      <!-- Logo -->
+      <div class="d-flex align-items-center gap-2">
+        <div class="rounded-2xl bg-indigo-500 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+          <i class="fas fa-star-of-life text-white fs-4"></i>
+        </div>
+        <span class="fw-bold fs-4 text-gray-800 ms-2">SkillPort</span>
+      </div>
+      <!-- Nav Links -->
+      <ul class="d-flex align-items-center gap-2 mb-0" style="list-style: none;">
+        <li><a href="student-dashboard.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+        <li><a href="tracker.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-solid fa-bullseye"></i> Tracker</a></li>
+        <li><a href="stats.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-solid fa-chart-bar"></i> Stats</a></li>
+        <li><a href="profile.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-regular fa-user"></i> Profile</a></li>
+        <li><a href="projects.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl bg-indigo-50 text-indigo-600 fw-semibold" style="font-size: 1.1rem;"><i class="fa-regular fa-folder-open"></i> Projects</a></li>
+        <li><a href="posts.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-regular fa-paper-plane"></i> Posts</a></li>
+        <li><a href="communities.html" class="d-flex align-items-center gap-2 px-3 py-2 rounded-2xl text-gray-500 fw-medium hover:bg-gray-50" style="font-size: 1.1rem;"><i class="fa-regular fa-users"></i> Communities</a></li>
+      </ul>
+      <!-- Avatar -->
+      <div class="ms-3">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="avatar shadow" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container max-w-7xl mx-auto py-8">
+    <!-- Header Card -->
+    <div class="glass rounded-xl p-5 mb-6 shadow-sm border border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+          <i class="fas fa-star-of-life text-white fs-4"></i>
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold text-slate-900 mb-0">Project Showcase</h1>
+          <p class="text-slate-600 mb-0">Build, deploy, and showcase your projects</p>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-3 w-full sm:w-auto">
+        <select class="form-select w-auto" style="min-width: 150px;">
+          <option>All Projects</option>
+          <option>Featured</option>
+          <option>Planning</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+          <option>Deployed</option>
+        </select>
+        <button class="btn btn-primary bg-gradient-to-r from-indigo-600 to-purple-600 border-0 shadow-lg d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+          <i class="bi bi-plus-lg"></i> Add Project
+        </button>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="row g-4">
+      <!-- Project Card 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-warning bg-opacity-25 text-warning-emphasis border border-warning mb-2">Planning</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">Social Media Analytics</h5>
+          <p class="text-slate-600 mb-3">Analytics dashboard for social media metrics with data visualization and automated reporting features</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">Python</span>
+            <span class="badge bg-light border text-muted">Django</span>
+            <span class="badge bg-light border text-muted">D3.js</span>
+            <span class="badge bg-light border text-muted">+1 more</span>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-github me-2"></i>Code</button>
+        </div>
+      </div>
+      <!-- Project Card 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-primary bg-opacity-25 text-primary-emphasis border border-primary mb-2">In Progress</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">Weather Dashboard</h5>
+          <p class="text-slate-600 mb-3">Beautiful weather dashboard with location-based forecasts, interactive charts, and severe weather alerts</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">React</span>
+            <span class="badge bg-light border text-muted">OpenWeather API</span>
+            <span class="badge bg-light border text-muted">Chart.js</span>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-github me-2"></i>Code</button>
+        </div>
+      </div>
+      <!-- Project Card 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-success bg-opacity-25 text-success-emphasis border border-success mb-2">Completed</span>
+          <span class="badge badge-featured position-absolute top-0 end-0 m-3 d-flex align-items-center gap-1"><i class="bi bi-star-fill me-1"></i>Featured</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">Task Management App</h5>
+          <p class="text-slate-600 mb-3">Collaborative task management application with real-time updates, team collaboration features, and productivity analytics</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">Vue.js</span>
+            <span class="badge bg-light border text-muted">Firebase</span>
+            <span class="badge bg-light border text-muted">Tailwind CSS</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-github me-2"></i>Code</button>
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-box-arrow-up-right me-2"></i>Live</button>
+          </div>
+        </div>
+      </div>
+      <!-- Project Card 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-purple-100 text-purple-800 border border-purple-200 mb-2">Deployed</span>
+          <span class="badge badge-featured position-absolute top-0 end-0 m-3 d-flex align-items-center gap-1"><i class="bi bi-star-fill me-1"></i>Featured</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">E-commerce Platform</h5>
+          <p class="text-slate-600 mb-3">Full-stack e-commerce solution built with React and Node.js, featuring user authentication, product catalog, shopping cart, and payment integration</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">React</span>
+            <span class="badge bg-light border text-muted">Node.js</span>
+            <span class="badge bg-light border text-muted">MongoDB</span>
+            <span class="badge bg-light border text-muted">+1 more</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-github me-2"></i>Code</button>
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-box-arrow-up-right me-2"></i>Live</button>
+          </div>
+        </div>
+      </div>
+      <!-- Project Card 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-success bg-opacity-25 text-success-emphasis border border-success mb-2">Completed</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">Cryptocurrency Portfolio Tracker</h5>
+          <p class="text-slate-600 mb-3">Real-time cryptocurrency portfolio tracking application with price alerts, portfolio analytics, and market insights.</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">React</span>
+            <span class="badge bg-light border text-muted">Chart.js</span>
+            <span class="badge bg-light border text-muted">CoinGecko API</span>
+            <span class="badge bg-light border text-muted">+1 more</span>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-github me-2"></i>Code</button>
+        </div>
+      </div>
+      <!-- Project Card 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-primary bg-opacity-25 text-primary-emphasis border border-primary mb-2">In Progress</span>
+          <span class="badge badge-featured position-absolute top-0 end-0 m-3 d-flex align-items-center gap-1"><i class="bi bi-star-fill me-1"></i>Featured</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">AI-Powered Recipe Finder</h5>
+          <p class="text-slate-600 mb-3">Recipe recommendation app that uses machine learning to suggest recipes based on available ingredients and dietary preferences.</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">Python</span>
+            <span class="badge bg-light border text-muted">Flask</span>
+            <span class="badge bg-light border text-muted">React</span>
+            <span class="badge bg-light border text-muted">+2 more</span>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-github me-2"></i>Code</button>
+        </div>
+      </div>
+      <!-- Project Card 7 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-purple-100 text-purple-800 border border-purple-200 mb-2">Deployed</span>
+          <span class="badge badge-featured position-absolute top-0 end-0 m-3 d-flex align-items-center gap-1"><i class="bi bi-star-fill me-1"></i>Featured</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">E-commerce Platform</h5>
+          <p class="text-slate-600 mb-3">Full-stack e-commerce solution with React frontend, Node.js backend, and MongoDB database. Features include user authentication, product catalog, shopping cart, and payment integration.</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">React</span>
+            <span class="badge bg-light border text-muted">Node.js</span>
+            <span class="badge bg-light border text-muted">MongoDB</span>
+            <span class="badge bg-light border text-muted">+1 more</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-github me-2"></i>Code</button>
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-box-arrow-up-right me-2"></i>Live</button>
+          </div>
+        </div>
+      </div>
+      <!-- Project Card 8 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-success bg-opacity-25 text-success-emphasis border border-success mb-2">Completed</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">Task Management Dashboard</h5>
+          <p class="text-slate-600 mb-3">Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">Vue.js</span>
+            <span class="badge bg-light border text-muted">Firebase</span>
+            <span class="badge bg-light border text-muted">Tailwind CSS</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-github me-2"></i>Code</button>
+            <button class="btn btn-outline-secondary btn-sm flex-fill"><i class="bi bi-box-arrow-up-right me-2"></i>Live</button>
+          </div>
+        </div>
+      </div>
+      <!-- Project Card 9 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="glass rounded-xl p-4 shadow border border-slate-100 position-relative h-100">
+          <span class="badge bg-warning bg-opacity-25 text-warning-emphasis border border-warning mb-2">Planning</span>
+          <h5 class="fw-semibold text-slate-900 mb-2">Social Media Analytics Tool</h5>
+          <p class="text-slate-600 mb-3">Analytics dashboard for social media performance tracking with data visualization and automated reporting features.</p>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge bg-light border text-muted">Next.js</span>
+            <span class="badge bg-light border text-muted">PostgreSQL</span>
+            <span class="badge bg-light border text-muted">D3.js</span>
+            <span class="badge bg-light border text-muted">+1 more</span>
+          </div>
+          <button class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-github me-2"></i>Code</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Project Modal (static, non-functional) -->
+  <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content glass border-0">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProjectModalLabel">Add New Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="projectTitle" class="form-label">Project Title *</label>
+              <input type="text" class="form-control" id="projectTitle" placeholder="My Awesome Project" required>
+            </div>
+            <div class="mb-3">
+              <label for="projectDescription" class="form-label">Description *</label>
+              <textarea class="form-control" id="projectDescription" rows="3" placeholder="Describe your project..." required></textarea>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 mb-3">
+                <label for="githubUrl" class="form-label">GitHub URL</label>
+                <input type="url" class="form-control" id="githubUrl" placeholder="https://github.com/...">
+              </div>
+              <div class="col-sm-6 mb-3">
+                <label for="liveUrl" class="form-label">Live Demo URL</label>
+                <input type="url" class="form-control" id="liveUrl" placeholder="https://...">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="projectStatus" class="form-label">Status</label>
+              <select class="form-select" id="projectStatus">
+                <option>Planning</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+                <option>Deployed</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Technologies/Tags</label>
+              <input type="text" class="form-control" placeholder="Add tags (comma separated)">
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="featuredCheck">
+              <label class="form-check-label" for="featuredCheck">
+                Featured Project
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary bg-gradient-to-r from-indigo-600 to-purple-600 border-0">Add Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (for modal) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
