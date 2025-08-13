@@ -79,7 +79,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(bodyParser.json());
 
 // Serve static files from client directory
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 // Mount routes
 app.use('/api/auth', authRoutes);
@@ -98,25 +98,25 @@ app.get('/api/health', (req, res) => {
 });
 
 // Test admin endpoint
-app.get('/test-admin', (req, res) => {
-  res.sendFile(path.join(__dirname, '../test-admin.html'));
-});
+// app.get('/test-admin', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../test-admin.html'));
+// });
 
 // Serve admin dashboard files
-app.get('/community/admin/:file', (req, res) => {
+app.get('community/admin/:file', (req, res) => {
   const fileName = req.params.file;
-  const filePath = path.join(__dirname, '../client/community/admin', fileName);
+  const filePath = path.join(__dirname, 'client/community/admin', fileName);
   res.sendFile(filePath);
 });
 
 // Serve auth.js file
-app.get('/auth.js', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/auth.js'));
-});
+// app.get('/auth.js', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client/auth.js'));
+// });
 
 // Serve main index.html file
 app.get('/index.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+  res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
 // Error handling middleware
@@ -130,7 +130,7 @@ app.use((err, req, res, next) => {
 
 // Catch-all route for client-side routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+  res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
 // Connect to MongoDB and start server
