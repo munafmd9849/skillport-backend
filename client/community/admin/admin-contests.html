@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contest Management - SkillPort Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            Community Admin
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="admin-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="admin-users.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="users" class="w-4 h-4"></i> Users
+          </a>
+          <a href="admin-mentors.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Mentors
+          </a>
+          <a href="admin-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 shadow-sm">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="admin-analytics.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+          </a>
+          <a href="admin-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="award" class="w-4 h-4"></i> Leaderboard
+          </a>
+          <a href="admin-settings.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="settings" class="w-4 h-4"></i> Settings
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-slate-900 mb-2">Contest Management</h1>
+          <p class="text-lg text-slate-600">Create and manage contests, assign mentors, and monitor performance.</p>
+        </div>
+        <button onclick="openCreateContestModal()" class="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white px-6 py-3 rounded-lg flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-5 h-5"></i> Create New Contest
+        </button>
+      </div>
+    </div>
+
+    <!-- Contest Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="trophy" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-amber-600">25</div>
+        <div class="text-sm text-slate-600">Total Contests</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="play-circle" class="w-8 h-8 text-green-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-green-600">18</div>
+        <div class="text-sm text-slate-600">Active Contests</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="users" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-blue-600">1,247</div>
+        <div class="text-sm text-slate-600">Total Participants</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="check-circle" class="w-8 h-8 text-purple-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-purple-600">7</div>
+        <div class="text-sm text-slate-600">Completed This Month</div>
+      </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <input type="text" placeholder="Search contests..." class="border border-slate-300 rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 w-64">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
+          </div>
+          <select class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            <option>All Categories</option>
+            <option>DSA</option>
+            <option>Java</option>
+            <option>Python</option>
+            <option>Web Development</option>
+            <option>Mobile Development</option>
+          </select>
+          <select class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Upcoming</option>
+            <option>Completed</option>
+            <option>Draft</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-slate-600">Sort by:</span>
+          <select class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+            <option>Name</option>
+            <option>Start Date</option>
+            <option>Participants</option>
+            <option>Category</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contests Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Contest Card 1 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <i data-lucide="target" class="w-6 h-6 text-white"></i>
+            </div>
+            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">DSA Contest #1</h3>
+          <p class="text-sm text-slate-600 mb-4">Arrays & Strings - Advanced algorithms and data structures</p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Mentor:</span>
+              <span class="font-medium text-slate-900">Dr. Smith</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Participants:</span>
+              <span class="font-medium text-slate-900">45 students</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Duration:</span>
+              <span class="font-medium text-slate-900">2 hours</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">End Date:</span>
+              <span class="font-medium text-slate-900">Dec 20, 2024</span>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="editContest('dsa-contest-1')" class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors">
+              Edit
+            </button>
+            <button onclick="viewContestDetails('dsa-contest-1')" class="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 transition-colors">
+              View
+            </button>
+            <button onclick="deleteContest('dsa-contest-1')" class="px-3 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition-colors">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contest Card 2 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+              <i data-lucide="coffee" class="w-6 h-6 text-white"></i>
+            </div>
+            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Java Contest #1</h3>
+          <p class="text-sm text-slate-600 mb-4">OOP Basics - Object-oriented programming fundamentals</p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Mentor:</span>
+              <span class="font-medium text-slate-900">Dr. Johnson</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Participants:</span>
+              <span class="font-medium text-slate-900">32 students</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Duration:</span>
+              <span class="font-medium text-slate-900">1.5 hours</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">End Date:</span>
+              <span class="font-medium text-slate-900">Dec 18, 2024</span>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="editContest('java-contest-1')" class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors">
+              Edit
+            </button>
+            <button onclick="viewContestDetails('java-contest-1')" class="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 transition-colors">
+              View
+            </button>
+            <button onclick="deleteContest('java-contest-1')" class="px-3 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition-colors">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contest Card 3 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+              <i data-lucide="code" class="w-6 h-6 text-white"></i>
+            </div>
+            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Python Contest #1</h3>
+          <p class="text-sm text-slate-600 mb-4">Data Structures - Lists, dictionaries, and algorithms</p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Mentor:</span>
+              <span class="font-medium text-slate-900">Prof. Wilson</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Participants:</span>
+              <span class="font-medium text-slate-900">28 students</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Duration:</span>
+              <span class="font-medium text-slate-900">2 hours</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">End Date:</span>
+              <span class="font-medium text-slate-900">Dec 22, 2024</span>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="editContest('python-contest-1')" class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors">
+              Edit
+            </button>
+            <button onclick="viewContestDetails('python-contest-1')" class="flex-1 px-3 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 transition-colors">
+              View
+            </button>
+            <button onclick="deleteContest('python-contest-1')" class="px-3 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition-colors">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contest Card 4 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <i data-lucide="globe" class="w-6 h-6 text-white"></i>
+            </div>
+            <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Upcoming</span>
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900 mb-2">Web Contest #1</h3>
+          <p class="text-sm text-slate-600 mb-4">Frontend Basics - HTML, CSS, and JavaScript</p>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Mentor:</span>
+              <span class="font-medium text-slate-900">Unassigned</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Participants:</span>
+              <span class="font-medium text-slate-900">0 students</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Duration:</span>
+              <span class="font-medium text-slate-900">3 hours</span>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">Start Date:</span>
+              <span class="font-medium text-slate-900">Dec 25, 2024</span>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="editContest('web-contest-1')" class="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg text-sm hover:bg-blue-700 transition-colors">
+              Edit
+            </button>
+            <button onclick="assignMentor('web-contest-1')" class="flex-1 px-3 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 transition-colors">
+              Assign
+            </button>
+            <button onclick="deleteContest('web-contest-1')" class="px-3 py-2 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition-colors">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Create Contest Modal -->
+  <div id="createContestModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div class="p-6 border-b border-slate-200">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-slate-900">Create New Contest</h2>
+          <button onclick="closeCreateContestModal()" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <form id="createContestForm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Contest Name</label>
+              <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Category</label>
+              <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                <option value="">Select category</option>
+                <option value="dsa">DSA</option>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
+                <option value="web">Web Development</option>
+                <option value="mobile">Mobile Development</option>
+                <option value="ai">AI/ML</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Start Date</label>
+              <input type="datetime-local" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">End Date</label>
+              <input type="datetime-local" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Duration (hours)</label>
+              <input type="number" min="0.5" max="24" step="0.5" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Max Participants</label>
+              <input type="number" min="1" max="1000" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Difficulty Level</label>
+              <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                <option value="">Select difficulty</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="expert">Expert</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Assign Mentor</label>
+              <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500">
+                <option value="">Select a mentor</option>
+                <option value="dr-smith">Dr. Smith - DSA Expert</option>
+                <option value="dr-johnson">Dr. Johnson - Java Expert</option>
+                <option value="prof-wilson">Prof. Wilson - Python Expert</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-slate-700 mb-2">Description</label>
+              <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" rows="3" placeholder="Describe the contest, topics covered, and learning objectives..."></textarea>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-slate-700 mb-2">Rules & Guidelines</label>
+              <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" rows="3" placeholder="Contest rules, submission guidelines, and evaluation criteria..."></textarea>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-slate-700 mb-2">Prizes & Rewards</label>
+              <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" rows="2" placeholder="Prizes, certificates, or rewards for winners..."></textarea>
+            </div>
+          </div>
+          
+          <div class="flex gap-3 mt-6">
+            <button type="button" onclick="closeCreateContestModal()" class="px-6 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors">
+              Cancel
+            </button>
+            <button type="submit" class="px-6 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors">
+              Create Contest
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assign Mentor Modal -->
+  <div id="assignMentorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+      <div class="p-6 border-b border-slate-200">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-slate-900">Assign Mentor</h2>
+          <button onclick="closeAssignMentorModal()" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <form id="assignMentorForm">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Select Mentor</label>
+            <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+              <option value="">Choose a mentor</option>
+              <option value="dr-smith">Dr. Smith - DSA Expert</option>
+              <option value="dr-johnson">Dr. Johnson - Java Expert</option>
+              <option value="prof-wilson">Prof. Wilson - Python Expert</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Assignment Notes</label>
+            <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" rows="3" placeholder="Any specific instructions for this assignment..."></textarea>
+          </div>
+          
+          <div class="flex gap-3">
+            <button type="button" onclick="closeAssignMentorModal()" class="flex-1 px-4 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+              Assign Mentor
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteContestModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-slate-900">Delete Contest</h3>
+            <p class="text-sm text-slate-600">This action cannot be undone.</p>
+          </div>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Are you sure you want to delete <span id="deleteContestName" class="font-semibold"></span>? This will permanently remove the contest and all associated data.</p>
+        <div class="flex gap-3">
+          <button onclick="closeDeleteContestModal()" class="flex-1 px-4 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors">
+            Cancel
+          </button>
+          <button onclick="confirmDeleteContest()" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+            Delete Contest
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    
+    let contestToDelete = null;
+    let contestToAssign = null;
+    
+    function openCreateContestModal() {
+      document.getElementById('createContestModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeCreateContestModal() {
+      document.getElementById('createContestModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      document.getElementById('createContestForm').reset();
+    }
+    
+    function editContest(contestId) {
+      // This would open an edit modal for the specific contest
+      alert(`Editing contest: ${contestId}`);
+    }
+    
+    function viewContestDetails(contestId) {
+      // This would open the admin contest details page
+      window.open(`admin-contest-details.html?contest=${contestId}`, '_blank');
+    }
+    
+    function assignMentor(contestId) {
+      contestToAssign = contestId;
+      document.getElementById('assignMentorModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeAssignMentorModal() {
+      document.getElementById('assignMentorModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      document.getElementById('assignMentorForm').reset();
+      contestToAssign = null;
+    }
+    
+    function deleteContest(contestId) {
+      contestToDelete = contestId;
+      const contestName = contestId.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      document.getElementById('deleteContestName').textContent = contestName;
+      document.getElementById('deleteContestModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeDeleteContestModal() {
+      document.getElementById('deleteContestModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      contestToDelete = null;
+    }
+    
+    function confirmDeleteContest() {
+      if (contestToDelete) {
+        // This would actually delete the contest from the database
+        alert(`Contest ${contestToDelete} has been deleted successfully!`);
+        closeDeleteContestModal();
+        // Refresh the page or update the table
+        location.reload();
+      }
+    }
+    
+    // Handle form submissions
+    document.getElementById('createContestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // This would create the contest
+      alert('Contest created successfully!');
+      closeCreateContestModal();
+      // Refresh the page or update the table
+      location.reload();
+    });
+    
+    document.getElementById('assignMentorForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // This would assign the mentor to the contest
+      alert(`Mentor assigned to ${contestToAssign} successfully!`);
+      closeAssignMentorModal();
+      // Refresh the page or update the table
+      location.reload();
+    });
+    
+    // Close modals when clicking outside
+    document.getElementById('createContestModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeCreateContestModal();
+      }
+    });
+    
+    document.getElementById('assignMentorModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeAssignMentorModal();
+      }
+    });
+    
+    document.getElementById('deleteContestModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeDeleteContestModal();
+      }
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - Community Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            Community Admin
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="admin-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="admin-users.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="users" class="w-4 h-4"></i> Users
+          </a>
+          <a href="admin-mentors.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Mentors
+          </a>
+          <a href="admin-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="admin-analytics.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+          </a>
+          <a href="admin-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 shadow-sm">
+            <i data-lucide="award" class="w-4 h-4"></i> Leaderboard
+          </a>
+          <a href="admin-settings.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="settings" class="w-4 h-4"></i> Settings
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">System Leaderboard</h1>
+      <p class="text-lg text-slate-600">Overall rankings and performance metrics across all contests and categories.</p>
+    </div>
+
+    <!-- Leaderboard Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Total Participants</p>
+            <p class="text-2xl font-bold text-slate-900">2,847</p>
+            <p class="text-xs text-green-600">+156 this week</p>
+          </div>
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="users" class="w-6 h-6 text-blue-600"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Active Contests</p>
+            <p class="text-2xl font-bold text-slate-900">25</p>
+            <p class="text-xs text-green-600">+3 new this month</p>
+          </div>
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="trophy" class="w-6 h-6 text-green-600"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Problems Solved</p>
+            <p class="text-2xl font-bold text-slate-900">18,247</p>
+            <p class="text-xs text-green-600">+1,247 this week</p>
+          </div>
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="target" class="w-6 h-6 text-purple-600"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Avg. Score</p>
+            <p class="text-2xl font-bold text-slate-900">847</p>
+            <p class="text-xs text-green-600">+23 from last month</p>
+          </div>
+          <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="trending-up" class="w-6 h-6 text-amber-600"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 3 Podium -->
+    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6 text-center">Top 3 Champions</h2>
+      <div class="flex items-end justify-center gap-8">
+        <!-- 2nd Place -->
+        <div class="text-center">
+          <div class="w-24 h-24 bg-gradient-to-br from-slate-400 to-slate-500 rounded-full flex items-center justify-center text-white font-bold text-2xl mb-4 mx-auto">
+            P
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900">Priya Sharma</h3>
+          <p class="text-sm text-slate-600">@priyasharma</p>
+          <div class="mt-2">
+            <span class="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm font-medium">2nd Place</span>
+          </div>
+          <div class="mt-2 text-sm">
+            <p class="text-slate-600">Score: <span class="font-semibold text-slate-900">2,847</span></p>
+            <p class="text-slate-600">Problems: <span class="font-semibold text-slate-900">142</span></p>
+          </div>
+        </div>
+
+        <!-- 1st Place -->
+        <div class="text-center">
+          <div class="w-32 h-32 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-3xl mb-4 mx-auto relative">
+            R
+            <div class="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
+              <i data-lucide="crown" class="w-4 h-4 text-yellow-800"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900">Rahul Kumar</h3>
+          <p class="text-sm text-slate-600">@rahulkumar</p>
+          <div class="mt-2">
+            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">1st Place</span>
+          </div>
+          <div class="mt-2 text-sm">
+            <p class="text-slate-600">Score: <span class="font-semibold text-slate-900">3,156</span></p>
+            <p class="text-slate-600">Problems: <span class="font-semibold text-slate-900">156</span></p>
+          </div>
+        </div>
+
+        <!-- 3rd Place -->
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-amber-700 to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">
+            A
+          </div>
+          <h3 class="text-lg font-semibold text-slate-900">Amit Patel</h3>
+          <p class="text-sm text-slate-600">@amitpatel</p>
+          <div class="mt-2">
+            <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-sm font-medium">3rd Place</span>
+          </div>
+          <div class="mt-2 text-sm">
+            <p class="text-slate-600">Score: <span class="font-semibold text-slate-900">2,634</span></p>
+            <p class="text-slate-600">Problems: <span class="font-semibold text-slate-900">134</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+      <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div class="flex gap-4">
+          <select id="categoryFilter" class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">All Categories</option>
+            <option value="DSA">DSA</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="Web Dev">Web Dev</option>
+          </select>
+          <select id="timeFilter" class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="all">All Time</option>
+            <option value="month">This Month</option>
+            <option value="week">This Week</option>
+            <option value="today">Today</option>
+          </select>
+        </div>
+        <div class="flex gap-2">
+          <input type="text" id="searchLeaderboard" placeholder="Search participants..." class="px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button onclick="exportLeaderboard()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+            <i data-lucide="download" class="w-4 h-4 inline mr-2"></i> Export
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complete Leaderboard -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h3 class="text-xl font-semibold text-slate-900 mb-6">Complete Rankings</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Rank</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Participant</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Total Score</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Problems Solved</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Contests Won</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Avg. Score</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Join Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-slate-200">
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-amber-600">1</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    R
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Rahul Kumar</div>
+                    <div class="text-xs text-slate-500">@rahulkumar</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">3,156</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">156</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">8</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">95.2%</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">Jan 15, 2024</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewUserDetails('rahul-kumar')" class="text-blue-600 hover:text-blue-900 mr-3">View</button>
+                <button onclick="sendNotification('rahul-kumar')" class="text-green-600 hover:text-green-900">Notify</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-slate-400">2</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    P
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Priya Sharma</div>
+                    <div class="text-xs text-slate-500">@priyasharma</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">2,847</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">142</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">6</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">92.3%</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">Feb 20, 2024</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewUserDetails('priya-sharma')" class="text-blue-600 hover:text-blue-900 mr-3">View</button>
+                <button onclick="sendNotification('priya-sharma')" class="text-green-600 hover:text-green-900">Notify</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-amber-700">3</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    A
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Amit Patel</div>
+                    <div class="text-xs text-slate-500">@amitpatel</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">2,634</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">134</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">7</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">88.9%</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">Mar 10, 2024</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewUserDetails('amit-patel')" class="text-blue-600 hover:text-blue-900 mr-3">View</button>
+                <button onclick="sendNotification('amit-patel')" class="text-green-600 hover:text-green-900">Notify</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-slate-500">4</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    S
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Sarah Chen</div>
+                    <div class="text-xs text-slate-500">@sarahchen</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">2,421</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">128</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">5</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">85.7%</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">Apr 5, 2024</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewUserDetails('sarah-chen')" class="text-blue-600 hover:text-blue-900 mr-3">View</button>
+                <button onclick="sendNotification('sarah-chen')" class="text-green-600 hover:text-green-900">Notify</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-slate-500">5</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-pink-400 to-rose-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    M
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Mike Davis</div>
+                    <div class="text-xs text-slate-500">@mikedavis</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">2,298</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">118</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">4</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">82.1%</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">May 12, 2024</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewUserDetails('mike-davis')" class="text-blue-600 hover:text-blue-900 mr-3">View</button>
+                <button onclick="sendNotification('mike-davis')" class="text-green-600 hover:text-green-900">Notify</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Notification Modal -->
+  <div id="notificationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+        <div class="flex items-center justify-between p-6 border-b border-slate-200">
+          <h3 class="text-xl font-semibold text-slate-900">Send Notification</h3>
+          <button onclick="closeModal('notificationModal')" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <div class="p-6">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Recipient</label>
+            <div id="notificationRecipient" class="p-3 bg-slate-50 rounded-lg text-sm font-medium text-slate-900"></div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Message</label>
+            <textarea id="notificationMessage" rows="4" placeholder="Enter your message..." class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="flex items-center">
+              <input type="checkbox" id="sendEmail" class="mr-2">
+              <span class="text-sm text-slate-700">Also send via email</span>
+            </label>
+          </div>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-slate-200">
+          <button onclick="closeModal('notificationModal')" class="px-4 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50">Cancel</button>
+          <button onclick="sendNotificationMessage()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    
+    // Modal functions
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+    
+    function viewUserDetails(userId) {
+      showNotification(`Viewing details for: ${userId}`, 'info');
+      // This would open a detailed user view
+    }
+    
+    function sendNotification(userId) {
+      const userNames = {
+        'rahul-kumar': 'Rahul Kumar (@rahulkumar)',
+        'priya-sharma': 'Priya Sharma (@priyasharma)',
+        'amit-patel': 'Amit Patel (@amitpatel)',
+        'sarah-chen': 'Sarah Chen (@sarahchen)',
+        'mike-davis': 'Mike Davis (@mikedavis)'
+      };
+      
+      document.getElementById('notificationRecipient').textContent = userNames[userId] || userId;
+      document.getElementById('notificationMessage').value = '';
+      document.getElementById('sendEmail').checked = false;
+      
+      openModal('notificationModal');
+    }
+    
+    function sendNotificationMessage() {
+      const message = document.getElementById('notificationMessage').value;
+      const sendEmail = document.getElementById('sendEmail').checked;
+      
+      if (!message.trim()) {
+        showNotification('Please enter a message', 'error');
+        return;
+      }
+      
+      showNotification('Notification sent successfully!', 'success');
+      closeModal('notificationModal');
+    }
+    
+    function exportLeaderboard() {
+      showNotification('Exporting leaderboard...', 'info');
+      
+      // Simulate export
+      setTimeout(() => {
+        const csvContent = generateLeaderboardCSV();
+        const link = document.createElement('a');
+        link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
+        link.download = `leaderboard-${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showNotification('Leaderboard exported successfully!', 'success');
+      }, 2000);
+    }
+    
+    function generateLeaderboardCSV() {
+      const headers = 'Rank,Name,Handle,Total Score,Problems Solved,Contests Won,Average Score,Join Date\n';
+      const data = [
+        '1,Rahul Kumar,@rahulkumar,3156,156,8,95.2%,Jan 15 2024',
+        '2,Priya Sharma,@priyasharma,2847,142,6,92.3%,Feb 20 2024',
+        '3,Amit Patel,@amitpatel,2634,134,7,88.9%,Mar 10 2024',
+        '4,Sarah Chen,@sarahchen,2421,128,5,85.7%,Apr 5 2024',
+        '5,Mike Davis,@mikedavis,2298,118,4,82.1%,May 12 2024'
+      ];
+      
+      return headers + data.join('\n');
+    }
+    
+    function showNotification(message, type) {
+      const notification = document.createElement('div');
+      notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white ${
+        type === 'success' ? 'bg-green-600' : 
+        type === 'error' ? 'bg-red-600' : 
+        'bg-blue-600'
+      }`;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+    
+    // Search functionality
+    document.getElementById('searchLeaderboard').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const rows = document.querySelectorAll('tbody tr');
+      
+      rows.forEach(row => {
+        const userName = row.querySelector('.text-sm.font-medium').textContent.toLowerCase();
+        const userHandle = row.querySelector('.text-xs.text-slate-500').textContent.toLowerCase();
+        
+        if (userName.includes(searchTerm) || userHandle.includes(searchTerm)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+    
+    // Filter functionality
+    document.getElementById('categoryFilter').addEventListener('change', function(e) {
+      // This would filter by category if implemented
+      showNotification(`Filtering by category: ${e.target.value || 'All'}`, 'info');
+    });
+    
+    document.getElementById('timeFilter').addEventListener('change', function(e) {
+      // This would filter by time period if implemented
+      showNotification(`Filtering by time: ${e.target.value}`, 'info');
+    });
+  </script>
+</body>
+</html> 

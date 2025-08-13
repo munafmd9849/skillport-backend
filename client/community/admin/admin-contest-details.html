@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contest Details - Community Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            Community Admin
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="admin-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="admin-users.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="users" class="w-4 h-4"></i> Users
+          </a>
+          <a href="admin-mentors.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Mentors
+          </a>
+          <a href="admin-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 shadow-sm">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="admin-analytics.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+          </a>
+          <a href="admin-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="award" class="w-4 h-4"></i> Leaderboard
+          </a>
+          <a href="admin-settings.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="settings" class="w-4 h-4"></i> Settings
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-slate-900 mb-2">Contest Details</h1>
+          <p class="text-lg text-slate-600">Manage contest information, participants, and performance.</p>
+        </div>
+        <div class="flex gap-3">
+          <button onclick="editContest()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            <i data-lucide="edit" class="w-4 h-4 inline mr-2"></i> Edit Contest
+          </button>
+          <button onclick="deleteContest()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+            <i data-lucide="trash-2" class="w-4 h-4 inline mr-2"></i> Delete Contest
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contest Overview -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+      <!-- Contest Info -->
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+              <i data-lucide="target" class="w-8 h-8 text-white"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900">DSA Contest #1</h2>
+              <p class="text-slate-600">Arrays & Strings - Advanced algorithms and data structures</p>
+            </div>
+            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">Active</span>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900 mb-4">Contest Information</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Category:</span>
+                  <span class="font-medium text-slate-900">DSA</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Difficulty:</span>
+                  <span class="font-medium text-slate-900">Advanced</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Duration:</span>
+                  <span class="font-medium text-slate-900">2 hours</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Start Date:</span>
+                  <span class="font-medium text-slate-900">Dec 15, 2024</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">End Date:</span>
+                  <span class="font-medium text-slate-900">Dec 20, 2024</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Max Participants:</span>
+                  <span class="font-medium text-slate-900">1000</span>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900 mb-4">Performance Metrics</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Current Participants:</span>
+                  <span class="font-medium text-slate-900">45</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Average Score:</span>
+                  <span class="font-medium text-slate-900">78.5%</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Completion Rate:</span>
+                  <span class="font-medium text-slate-900">92%</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Problems Solved:</span>
+                  <span class="font-medium text-slate-900">156</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-600">Time Remaining:</span>
+                  <span class="font-medium text-green-600">4 days 12 hours</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assigned Mentor -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Assigned Mentor</h3>
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-2xl mx-auto mb-4">
+              D
+            </div>
+            <h4 class="text-lg font-semibold text-slate-900">Dr. Smith</h4>
+            <p class="text-slate-600 mb-2">DSA Expert</p>
+            <p class="text-sm text-slate-500 mb-4">24 students assigned</p>
+            <div class="space-y-2">
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-600">Rating:</span>
+                <span class="font-medium text-slate-900">4.8★</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-600">Experience:</span>
+                <span class="font-medium text-slate-900">8 years</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-slate-600">Status:</span>
+                <span class="text-green-600 font-medium">Active</span>
+              </div>
+            </div>
+            <button onclick="changeMentor()" class="w-full mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              Change Mentor
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Participants Section -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-semibold text-slate-900">Contest Participants</h3>
+        <div class="flex gap-3">
+          <button onclick="addParticipant()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+            <i data-lucide="user-plus" class="w-4 h-4 inline mr-2"></i> Add Participant
+          </button>
+          <button onclick="exportParticipants()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+            <i data-lucide="download" class="w-4 h-4 inline mr-2"></i> Export List
+          </button>
+        </div>
+      </div>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Rank</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Participant</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Score</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Problems Solved</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Time Taken</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Status</th>
+              <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-slate-200">
+            <tr class="hover:bg-slate-50">
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-amber-600">1</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm font-semibold mr-3">
+                    R
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Rahul Kumar</div>
+                    <div class="text-xs text-slate-500">@rahulkumar</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">95%</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">8/10</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">1h 45m</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Completed</span>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewParticipant('rahul-kumar')" class="text-blue-600 hover:text-blue-900">View</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-slate-400">2</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-semibold mr-3">
+                    P
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Priya Sharma</div>
+                    <div class="text-xs text-slate-500">@priyasharma</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">87%</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">7/10</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">1h 52m</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Completed</span>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewParticipant('priya-sharma')" class="text-blue-600 hover:text-blue-900">View</button>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-lg font-bold text-amber-700">3</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white text-sm font-semibold mr-3">
+                    A
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Amit Patel</div>
+                    <div class="text-xs text-slate-500">@amitpatel</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">82%</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">6/10</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">1h 38m</div>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Completed</span>
+              </td>
+              <td class="px-4 py-4 whitespace-nowrap text-sm font-medium">
+                <button onclick="viewParticipant('amit-patel')" class="text-blue-600 hover:text-blue-900">View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Contest Problems -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-semibold text-slate-900">Contest Problems</h3>
+        <button onclick="addProblem()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          <i data-lucide="plus" class="w-4 h-4 inline mr-2"></i> Add Problem
+        </button>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="border border-slate-200 rounded-lg p-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-semibold text-slate-900">Problem 1: Array Rotation</h4>
+            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Easy</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Rotate an array by k positions to the right</p>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500">Solved by:</span>
+            <span class="font-medium text-slate-900">42/45</span>
+          </div>
+        </div>
+        
+        <div class="border border-slate-200 rounded-lg p-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-semibold text-slate-900">Problem 2: String Permutation</h4>
+            <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">Medium</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Check if one string is a permutation of another</p>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500">Solved by:</span>
+            <span class="font-medium text-slate-900">38/45</span>
+          </div>
+        </div>
+        
+        <div class="border border-slate-200 rounded-lg p-4">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-semibold text-slate-900">Problem 3: Subarray Sum</h4>
+            <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs">Hard</span>
+          </div>
+          <p class="text-sm text-slate-600 mb-3">Find subarray with given sum</p>
+          <div class="flex justify-between text-sm">
+            <span class="text-slate-500">Solved by:</span>
+            <span class="font-medium text-slate-900">25/45</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Edit Contest Modal -->
+  <div id="editContestModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between p-6 border-b border-slate-200">
+          <h3 class="text-xl font-semibold text-slate-900">Edit Contest</h3>
+          <button onclick="closeModal('editContestModal')" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <div class="p-6">
+          <form id="editContestForm" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Contest Name</label>
+                <input type="text" id="contestName" value="DSA Contest #1" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Category</label>
+                <select id="contestCategory" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="DSA" selected>DSA</option>
+                  <option value="Java">Java</option>
+                  <option value="Python">Python</option>
+                  <option value="Web Dev">Web Dev</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Difficulty</label>
+                <select id="contestDifficulty" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced" selected>Advanced</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Duration (hours)</label>
+                <input type="number" id="contestDuration" value="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Start Date</label>
+                <input type="date" id="contestStartDate" value="2024-12-15" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">End Date</label>
+                <input type="date" id="contestEndDate" value="2024-12-20" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Max Participants</label>
+                <input type="number" id="maxParticipants" value="1000" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Status</label>
+                <select id="contestStatus" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="Active" selected>Active</option>
+                  <option value="Draft">Draft</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Description</label>
+              <textarea id="contestDescription" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">Arrays & Strings - Advanced algorithms and data structures</textarea>
+            </div>
+          </form>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-slate-200">
+          <button onclick="closeModal('editContestModal')" class="px-4 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50">Cancel</button>
+          <button onclick="saveContestChanges()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Change Mentor Modal -->
+  <div id="changeMentorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+        <div class="flex items-center justify-between p-6 border-b border-slate-200">
+          <h3 class="text-xl font-semibold text-slate-900">Change Contest Mentor</h3>
+          <button onclick="closeModal('changeMentorModal')" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <div class="p-6">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Current Mentor</label>
+            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+              <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold">
+                D
+              </div>
+              <div>
+                <div class="font-medium text-slate-900">Dr. Smith</div>
+                <div class="text-sm text-slate-500">DSA Expert</div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Select New Mentor</label>
+            <select id="newMentor" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Choose a mentor</option>
+              <option value="dr-johnson">Dr. Johnson - Java Expert</option>
+              <option value="prof-wilson">Prof. Wilson - Python Expert</option>
+              <option value="dr-brown">Dr. Brown - Web Dev Expert</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="flex items-center">
+              <input type="checkbox" id="addSubMentor" class="mr-2">
+              <span class="text-sm text-slate-700">Add as sub-mentor (keep current mentor)</span>
+            </label>
+          </div>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-slate-200">
+          <button onclick="closeModal('changeMentorModal')" class="px-4 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50">Cancel</button>
+          <button onclick="saveMentorChange()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Change Mentor</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Participant Modal -->
+  <div id="addParticipantModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between p-6 border-b border-slate-200">
+          <h3 class="text-xl font-semibold text-slate-900">Add Participants</h3>
+          <button onclick="closeModal('addParticipantModal')" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <div class="p-6">
+          <div class="mb-4">
+            <input type="text" id="searchUsers" placeholder="Search users..." class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div class="space-y-2 max-h-64 overflow-y-auto">
+            <div class="flex items-center justify-between p-3 border border-slate-200 rounded-lg">
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="user1" class="mr-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                  S
+                </div>
+                <div>
+                  <div class="font-medium text-slate-900">Sarah Chen</div>
+                  <div class="text-sm text-slate-500">@sarahchen</div>
+                </div>
+              </div>
+              <span class="text-sm text-slate-500">No Contest</span>
+            </div>
+            <div class="flex items-center justify-between p-3 border border-slate-200 rounded-lg">
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="user2" class="mr-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                  M
+                </div>
+                <div>
+                  <div class="font-medium text-slate-900">Mike Davis</div>
+                  <div class="text-sm text-slate-500">@mikedavis</div>
+                </div>
+              </div>
+              <span class="text-sm text-slate-500">No Contest</span>
+            </div>
+            <div class="flex items-center justify-between p-3 border border-slate-200 rounded-lg">
+              <div class="flex items-center gap-3">
+                <input type="checkbox" id="user3" class="mr-2">
+                <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+                  L
+                </div>
+                <div>
+                  <div class="font-medium text-slate-900">Lisa Wang</div>
+                  <div class="text-sm text-slate-500">@lisawang</div>
+                </div>
+              </div>
+              <span class="text-sm text-slate-500">No Contest</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-slate-200">
+          <button onclick="closeModal('addParticipantModal')" class="px-4 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50">Cancel</button>
+          <button onclick="addSelectedParticipants()" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Add Selected</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Problem Modal -->
+  <div id="addProblemModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between p-6 border-b border-slate-200">
+          <h3 class="text-xl font-semibold text-slate-900">Add Problem</h3>
+          <button onclick="closeModal('addProblemModal')" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+        <div class="p-6">
+          <form id="addProblemForm" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Problem Title</label>
+                <input type="text" id="problemTitle" placeholder="e.g., Array Rotation" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-slate-700 mb-2">Difficulty</label>
+                <select id="problemDifficulty" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hard">Hard</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Problem Description</label>
+              <textarea id="problemDescription" rows="4" placeholder="Describe the problem..." class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Test Cases</label>
+              <textarea id="testCases" rows="3" placeholder="Input: [1,2,3,4,5], k=2&#10;Output: [4,5,1,2,3]" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Points</label>
+              <input type="number" id="problemPoints" value="10" min="1" max="100" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+          </form>
+        </div>
+        <div class="flex justify-end gap-3 p-6 border-t border-slate-200">
+          <button onclick="closeModal('addProblemModal')" class="px-4 py-2 text-slate-600 border border-slate-300 rounded-lg hover:bg-slate-50">Cancel</button>
+          <button onclick="saveProblem()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add Problem</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    
+    // Modal functions
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+    
+    function editContest() {
+      openModal('editContestModal');
+    }
+    
+    function saveContestChanges() {
+      const formData = {
+        name: document.getElementById('contestName').value,
+        category: document.getElementById('contestCategory').value,
+        difficulty: document.getElementById('contestDifficulty').value,
+        duration: document.getElementById('contestDuration').value,
+        startDate: document.getElementById('contestStartDate').value,
+        endDate: document.getElementById('contestEndDate').value,
+        maxParticipants: document.getElementById('maxParticipants').value,
+        status: document.getElementById('contestStatus').value,
+        description: document.getElementById('contestDescription').value
+      };
+      
+      // Update the page content
+      document.querySelector('h2').textContent = formData.name;
+      document.querySelector('p.text-slate-600').textContent = formData.description;
+      
+      // Update contest info
+      const infoElements = document.querySelectorAll('.space-y-3 .flex.justify-between');
+      infoElements[0].querySelector('.font-medium').textContent = formData.category;
+      infoElements[1].querySelector('.font-medium').textContent = formData.difficulty;
+      infoElements[2].querySelector('.font-medium').textContent = formData.duration + ' hours';
+      infoElements[3].querySelector('.font-medium').textContent = new Date(formData.startDate).toLocaleDateString();
+      infoElements[4].querySelector('.font-medium').textContent = new Date(formData.endDate).toLocaleDateString();
+      infoElements[5].querySelector('.font-medium').textContent = formData.maxParticipants;
+      
+      // Update status badge
+      const statusBadge = document.querySelector('.bg-green-100.text-green-700');
+      statusBadge.textContent = formData.status;
+      statusBadge.className = formData.status === 'Active' ? 'bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium' : 
+                             formData.status === 'Draft' ? 'bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium' :
+                             formData.status === 'Completed' ? 'bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium' :
+                             'bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium';
+      
+      closeModal('editContestModal');
+      showNotification('Contest updated successfully!', 'success');
+    }
+    
+    function deleteContest() {
+      if (confirm('Are you sure you want to delete this contest? This action cannot be undone.')) {
+        showNotification('Contest deleted successfully!', 'success');
+        setTimeout(() => {
+          window.location.href = 'admin-contests.html';
+        }, 1000);
+      }
+    }
+    
+    function changeMentor() {
+      openModal('changeMentorModal');
+    }
+    
+    function saveMentorChange() {
+      const newMentor = document.getElementById('newMentor').value;
+      const addSubMentor = document.getElementById('addSubMentor').checked;
+      
+      if (!newMentor) {
+        showNotification('Please select a mentor', 'error');
+        return;
+      }
+      
+      const mentorNames = {
+        'dr-johnson': 'Dr. Johnson',
+        'prof-wilson': 'Prof. Wilson',
+        'dr-brown': 'Dr. Brown'
+      };
+      
+      const mentorInitials = {
+        'dr-johnson': 'J',
+        'prof-wilson': 'W',
+        'dr-brown': 'B'
+      };
+      
+      const mentorColors = {
+        'dr-johnson': 'from-blue-400 to-cyan-500',
+        'prof-wilson': 'from-green-400 to-teal-500',
+        'dr-brown': 'from-purple-400 to-violet-500'
+      };
+      
+      if (!addSubMentor) {
+        // Replace current mentor
+        const mentorSection = document.querySelector('.lg\\:col-span-1 .text-center');
+        mentorSection.querySelector('.w-20.h-20').className = `w-20 h-20 bg-gradient-to-br ${mentorColors[newMentor]} rounded-full flex items-center justify-center text-white font-semibold text-2xl mx-auto mb-4`;
+        mentorSection.querySelector('.w-20.h-20').textContent = mentorInitials[newMentor];
+        mentorSection.querySelector('h4').textContent = mentorNames[newMentor];
+        
+        showNotification('Mentor changed successfully!', 'success');
+      } else {
+        // Add as sub-mentor
+        showNotification('Sub-mentor added successfully!', 'success');
+      }
+      
+      closeModal('changeMentorModal');
+    }
+    
+    function addParticipant() {
+      openModal('addParticipantModal');
+    }
+    
+    function addSelectedParticipants() {
+      const selectedUsers = [];
+      document.querySelectorAll('#addParticipantModal input[type="checkbox"]:checked').forEach(checkbox => {
+        selectedUsers.push(checkbox.id);
+      });
+      
+      if (selectedUsers.length === 0) {
+        showNotification('Please select at least one participant', 'error');
+        return;
+      }
+      
+      // Add to participants table (mock)
+      showNotification(`${selectedUsers.length} participant(s) added successfully!`, 'success');
+      closeModal('addParticipantModal');
+    }
+    
+    function exportParticipants() {
+      showNotification('Exporting participants list...', 'info');
+      // Mock export functionality
+      setTimeout(() => {
+        showNotification('Participants list exported successfully!', 'success');
+      }, 2000);
+    }
+    
+    function viewParticipant(userId) {
+      showNotification(`Viewing participant: ${userId}`, 'info');
+      // This would open a detailed participant view
+    }
+    
+    function addProblem() {
+      openModal('addProblemModal');
+    }
+    
+    function saveProblem() {
+      const title = document.getElementById('problemTitle').value;
+      const difficulty = document.getElementById('problemDifficulty').value;
+      const description = document.getElementById('problemDescription').value;
+      const points = document.getElementById('problemPoints').value;
+      
+      if (!title || !description) {
+        showNotification('Please fill in all required fields', 'error');
+        return;
+      }
+      
+      // Add to problems grid (mock)
+      const problemsGrid = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3');
+      const newProblem = document.createElement('div');
+      newProblem.className = 'border border-slate-200 rounded-lg p-4';
+      newProblem.innerHTML = `
+        <div class="flex items-center justify-between mb-2">
+          <h4 class="font-semibold text-slate-900">Problem ${problemsGrid.children.length + 1}: ${title}</h4>
+          <span class="bg-${difficulty === 'Easy' ? 'green' : difficulty === 'Medium' ? 'yellow' : 'red'}-100 text-${difficulty === 'Easy' ? 'green' : difficulty === 'Medium' ? 'yellow' : 'red'}-700 px-2 py-1 rounded text-xs">${difficulty}</span>
+        </div>
+        <p class="text-sm text-slate-600 mb-3">${description}</p>
+        <div class="flex justify-between text-sm">
+          <span class="text-slate-500">Points:</span>
+          <span class="font-medium text-slate-900">${points}</span>
+        </div>
+      `;
+      problemsGrid.appendChild(newProblem);
+      
+      closeModal('addProblemModal');
+      showNotification('Problem added successfully!', 'success');
+      
+      // Reset form
+      document.getElementById('addProblemForm').reset();
+    }
+    
+    function showNotification(message, type) {
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white ${
+        type === 'success' ? 'bg-green-600' : 
+        type === 'error' ? 'bg-red-600' : 
+        'bg-blue-600'
+      }`;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+    
+    // Search functionality for add participant modal
+    document.getElementById('searchUsers').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const userItems = document.querySelectorAll('#addParticipantModal .flex.items-center.justify-between');
+      
+      userItems.forEach(item => {
+        const userName = item.querySelector('.font-medium').textContent.toLowerCase();
+        const userHandle = item.querySelector('.text-sm.text-slate-500').textContent.toLowerCase();
+        
+        if (userName.includes(searchTerm) || userHandle.includes(searchTerm)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html> 

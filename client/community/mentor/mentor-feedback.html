@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillPort Community - Give Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            SkillPort
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="mentor-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="mentor-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="mentor-feedback.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-700 shadow-sm">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Feedback
+          </a>
+          <a href="mentor-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Leaderboard
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">Give Feedback</h1>
+      <p class="text-lg text-slate-600">Provide constructive feedback to help your students grow and improve.</p>
+    </div>
+
+    <!-- Student List -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-slate-900">All Students</h2>
+        <div class="flex gap-2">
+          <input type="text" placeholder="Search students..." class="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <select class="px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option>All Students</option>
+            <option>Needs Feedback</option>
+            <option>Recently Active</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Student 1 -->
+        <div class="border border-slate-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold">
+                R
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Rahul Kumar</h3>
+                <p class="text-sm text-slate-500">rahul.kumar@email.com</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">847 points</div>
+              <div class="text-xs text-slate-500">Last active: 2 hours ago</div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openFeedbackModal('Rahul Kumar')" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+              Give Feedback
+            </button>
+            <a href="student-analytics.html?student=rahul-kumar" class="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+              View Profile
+            </a>
+          </div>
+        </div>
+
+        <!-- Student 2 -->
+        <div class="border border-slate-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-semibold">
+                P
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Priya Sharma</h3>
+                <p class="text-sm text-slate-500">priya.sharma@email.com</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">823 points</div>
+              <div class="text-xs text-slate-500">Last active: 1 day ago</div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openFeedbackModal('Priya Sharma')" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+              Give Feedback
+            </button>
+            <a href="student-analytics.html?student=priya-sharma" class="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+              View Profile
+            </a>
+          </div>
+        </div>
+
+        <!-- Student 3 -->
+        <div class="border border-slate-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white font-semibold">
+                A
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Amit Patel</h3>
+                <p class="text-sm text-slate-500">amit.patel@email.com</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">798 points</div>
+              <div class="text-xs text-slate-500">Last active: 3 hours ago</div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openFeedbackModal('Amit Patel')" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+              Give Feedback
+            </button>
+            <a href="student-analytics.html?student=amit-patel" class="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+              View Profile
+            </a>
+          </div>
+        </div>
+
+        <!-- Student 4 -->
+        <div class="border border-slate-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold">
+                N
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Neha Singh</h3>
+                <p class="text-sm text-slate-500">neha.singh@email.com</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">765 points</div>
+              <div class="text-xs text-slate-500">Last active: 5 hours ago</div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openFeedbackModal('Neha Singh')" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+              Give Feedback
+            </button>
+            <a href="student-analytics.html?student=neha-singh" class="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+              View Profile
+            </a>
+          </div>
+        </div>
+
+        <!-- Student 5 -->
+        <div class="border border-slate-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-gradient-to-br from-red-400 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold">
+                S
+              </div>
+              <div>
+                <h3 class="font-semibold text-slate-900">Suresh Kumar</h3>
+                <p class="text-sm text-slate-500">suresh.kumar@email.com</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">712 points</div>
+              <div class="text-xs text-slate-500">Last active: 1 day ago</div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openFeedbackModal('Suresh Kumar')" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+              Give Feedback
+            </button>
+            <a href="student-analytics.html?student=suresh-kumar" class="px-4 py-2 border border-slate-300 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+              View Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- Feedback Modal -->
+  <div id="feedbackModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div class="p-6 border-b border-slate-200">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-slate-900">Give Feedback to <span id="studentName"></span></h2>
+          <button onclick="closeFeedbackModal()" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <form id="feedbackForm">
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Feedback Type</label>
+            <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>General Feedback</option>
+              <option>Code Review</option>
+              <option>Performance Improvement</option>
+              <option>Contest Feedback</option>
+              <option>Task Feedback</option>
+            </select>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Rating</label>
+            <div class="flex gap-2">
+              <button type="button" class="w-10 h-10 rounded-full border-2 border-slate-300 hover:border-amber-400 hover:bg-amber-50 transition-colors" onclick="setRating(1)">1</button>
+              <button type="button" class="w-10 h-10 rounded-full border-2 border-slate-300 hover:border-amber-400 hover:bg-amber-50 transition-colors" onclick="setRating(2)">2</button>
+              <button type="button" class="w-10 h-10 rounded-full border-2 border-slate-300 hover:border-amber-400 hover:bg-amber-50 transition-colors" onclick="setRating(3)">3</button>
+              <button type="button" class="w-10 h-10 rounded-full border-2 border-slate-300 hover:border-amber-400 hover:bg-amber-50 transition-colors" onclick="setRating(4)">4</button>
+              <button type="button" class="w-10 h-10 rounded-full border-2 border-slate-300 hover:border-amber-400 hover:bg-amber-50 transition-colors" onclick="setRating(5)">5</button>
+            </div>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Strengths</label>
+            <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="What are the student's strengths?"></textarea>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Areas for Improvement</label>
+            <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="What areas need improvement?"></textarea>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Specific Feedback</label>
+            <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Provide detailed, constructive feedback..."></textarea>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Recommendations</label>
+            <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="What would you recommend for improvement?"></textarea>
+          </div>
+          
+          <div class="flex gap-3">
+            <button type="button" onclick="closeFeedbackModal()" class="px-6 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors">
+              Cancel
+            </button>
+            <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              Send Feedback
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    
+    let selectedRating = 0;
+    
+    function openFeedbackModal(studentName) {
+      document.getElementById('studentName').textContent = studentName;
+      document.getElementById('feedbackModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeFeedbackModal() {
+      document.getElementById('feedbackModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      // Reset form
+      document.getElementById('feedbackForm').reset();
+      selectedRating = 0;
+      // Reset rating buttons
+      document.querySelectorAll('[onclick^="setRating"]').forEach(btn => {
+        btn.classList.remove('border-amber-400', 'bg-amber-50');
+        btn.classList.add('border-slate-300');
+      });
+    }
+    
+    function setRating(rating) {
+      selectedRating = rating;
+      // Reset all buttons
+      document.querySelectorAll('[onclick^="setRating"]').forEach(btn => {
+        btn.classList.remove('border-amber-400', 'bg-amber-50');
+        btn.classList.add('border-slate-300');
+      });
+      // Highlight selected rating
+      for (let i = 1; i <= rating; i++) {
+        const btn = document.querySelector(`[onclick="setRating(${i})"]`);
+        btn.classList.remove('border-slate-300');
+        btn.classList.add('border-amber-400', 'bg-amber-50');
+      }
+    }
+    
+    // Handle form submission
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Here you would typically send the feedback to your backend
+      alert('Feedback sent successfully!');
+      closeFeedbackModal();
+    });
+    
+    // Close modal when clicking outside
+    document.getElementById('feedbackModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeFeedbackModal();
+      }
+    });
+  </script>
+</body>
+</html> 

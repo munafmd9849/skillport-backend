@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillPort Community Mentor Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            SkillPort
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="#" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-700 shadow-sm">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="mentor-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="mentor-feedback.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Feedback
+          </a>
+          <a href="mentor-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Leaderboard
+          </a>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button class="p-2 rounded-full hover:bg-slate-100">
+          <i data-lucide="bell" class="w-5 h-5 text-slate-500"></i>
+        </button>
+        <button class="p-2 rounded-full hover:bg-slate-100">
+          <i data-lucide="settings" class="w-5 h-5 text-slate-500"></i>
+        </button>
+        <div class="relative group">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="w-8 h-8 rounded-full border-2 border-indigo-500 cursor-pointer">
+          <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block">
+            <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Profile</a>
+            <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Settings</a>
+            <div class="border-t border-slate-200 my-1"></div>
+            <a href="#" onclick="logout(); return false;" class="block px-4 py-2 text-sm text-red-600 hover:bg-slate-100">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">Mentor Dashboard</h1>
+      <p class="text-lg text-slate-600">Track your students' progress and manage your mentoring activities.</p>
+    </div>
+
+    <!-- Mentor Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="users" class="w-8 h-8 text-green-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-green-600">24</div>
+        <div class="text-sm text-slate-600">Active Students</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="target" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-blue-600">156</div>
+        <div class="text-sm text-slate-600">Tasks Assigned</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="check-circle" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-amber-600">89</div>
+        <div class="text-sm text-slate-600">Completed Tasks</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="bar-chart-3" class="w-8 h-8 text-purple-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-purple-600">92%</div>
+        <div class="text-sm text-slate-600">Success Rate</div>
+      </div>
+    </div>
+
+    <!-- Recent Activity & Student Progress -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <!-- Top Performing Students -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-slate-900">Top Performing Students</h2>
+          <a href="top-performing-students.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</a>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold">
+              R
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Rahul Kumar</p>
+              <p class="text-xs text-slate-500">Score: 847 points</p>
+            </div>
+            <div class="text-sm font-semibold text-green-600">+12%</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-semibold">
+              P
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Priya Sharma</p>
+              <p class="text-xs text-slate-500">Score: 823 points</p>
+            </div>
+            <div class="text-sm font-semibold text-green-600">+8%</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white font-semibold">
+              A
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Amit Patel</p>
+              <p class="text-xs text-slate-500">Score: 798 points</p>
+            </div>
+            <div class="text-sm font-semibold text-green-600">+15%</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white font-semibold">
+              N
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Neha Singh</p>
+              <p class="text-xs text-slate-500">Score: 765 points</p>
+            </div>
+            <div class="text-sm font-semibold text-green-600">+5%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Contests -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-slate-900">Active Contests</h2>
+          <a href="active-contests.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</a>
+        </div>
+        <div class="space-y-4">
+          <div class="border border-slate-200 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-slate-900">DSA Contest</h3>
+              <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Data Structures & Algorithms</p>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">12 students participating</span>
+              <span class="text-slate-500">Ends in 2 days</span>
+            </div>
+          </div>
+          <div class="border border-slate-200 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-semibold text-slate-900">Java Contest</h3>
+              <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+            </div>
+            <p class="text-sm text-slate-600 mb-3">Core Java Programming</p>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-slate-500">8 students participating</span>
+              <span class="text-slate-500">Ends in 5 days</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div>
+      <h2 class="text-2xl font-bold text-slate-900 mb-6">Quick Actions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <a href="#" class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all group cursor-pointer">
+          <i data-lucide="users" class="w-12 h-12 text-blue-600 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+          <h3 class="font-semibold text-slate-900 mb-2">My Students</h3>
+          <p class="text-sm text-slate-600">View and manage your students</p>
+        </a>
+        <a href="#" class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all group cursor-pointer">
+          <i data-lucide="target" class="w-12 h-12 text-green-600 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+          <h3 class="font-semibold text-slate-900 mb-2">Assign Tasks</h3>
+          <p class="text-sm text-slate-600">Create and assign new tasks</p>
+        </a>
+        <a href="mentor-feedback.html" class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all group cursor-pointer">
+          <i data-lucide="message-circle" class="w-12 h-12 text-purple-600 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+          <h3 class="font-semibold text-slate-900 mb-2">Give Feedback</h3>
+          <p class="text-sm text-slate-600">Provide feedback to students</p>
+        </a>
+        <a href="mentor-leaderboard.html" class="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-all group cursor-pointer">
+          <i data-lucide="bar-chart-3" class="w-12 h-12 text-amber-600 mx-auto mb-4 group-hover:scale-110 transition-transform"></i>
+          <h3 class="font-semibold text-slate-900 mb-2">Leaderboard</h3>
+          <p class="text-sm text-slate-600">View contest leaderboards</p>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+  
+  <!-- Authentication Script -->
+  <script src="../../../auth.js"></script>
+  <script>
+    // Check if user is authorized to access this page
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user is logged in
+      if (!isLoggedIn()) {
+        window.location.href = '../../../index.html';
+        return;
+      }
+      
+      // Check if user has the correct role
+      const user = getCurrentUser();
+      if (!user || user.role !== 'mentor') {
+        window.location.href = '../../../index.html';
+        return;
+      }
+    });
+  </script>
+</body>
+</html>

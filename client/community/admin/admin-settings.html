@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - SkillPort Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            Community Admin
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="admin-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="admin-users.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="users" class="w-4 h-4"></i> Users
+          </a>
+          <a href="admin-mentors.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Mentors
+          </a>
+          <a href="admin-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="admin-analytics.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+          </a>
+          <a href="admin-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="award" class="w-4 h-4"></i> Leaderboard
+          </a>
+          <a href="admin-settings.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 shadow-sm">
+            <i data-lucide="settings" class="w-4 h-4"></i> Settings
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">System Settings</h1>
+      <p class="text-lg text-slate-600">Configure platform settings, security, and system preferences.</p>
+    </div>
+
+    <!-- Settings Navigation -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Settings Sidebar -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+          <h3 class="text-lg font-semibold text-slate-900 mb-4">Settings</h3>
+          <nav class="space-y-2">
+            <button onclick="showSection('general')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-700">
+              <i data-lucide="settings" class="w-4 h-4 inline mr-2"></i> General
+            </button>
+            <button onclick="showSection('security')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+              <i data-lucide="shield" class="w-4 h-4 inline mr-2"></i> Security
+            </button>
+            <button onclick="showSection('notifications')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+              <i data-lucide="bell" class="w-4 h-4 inline mr-2"></i> Notifications
+            </button>
+            <button onclick="showSection('appearance')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+              <i data-lucide="palette" class="w-4 h-4 inline mr-2"></i> Appearance
+            </button>
+            <button onclick="showSection('backup')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+              <i data-lucide="database" class="w-4 h-4 inline mr-2"></i> Backup & Restore
+            </button>
+            <button onclick="showSection('advanced')" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+              <i data-lucide="code" class="w-4 h-4 inline mr-2"></i> Advanced
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Settings Content -->
+      <div class="lg:col-span-3">
+        <!-- General Settings -->
+        <div id="general-section" class="settings-section">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold text-slate-900 mb-6">General Settings</h3>
+            
+            <div class="space-y-6">
+              <!-- Platform Information -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Platform Information</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Platform Name</label>
+                    <input type="text" value="SkillPort Community" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Platform URL</label>
+                    <input type="url" value="https://skillport.com" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Admin Email</label>
+                    <input type="email" value="admin@skillport.com" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Support Email</label>
+                    <input type="email" value="support@skillport.com" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contest Settings -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Contest Settings</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Max Contest Duration (hours)</label>
+                    <input type="number" value="24" min="1" max="168" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Max Participants per Contest</label>
+                    <input type="number" value="1000" min="1" max="10000" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Auto-close Contests</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Default Contest Duration (hours)</label>
+                    <input type="number" value="2" min="0.5" max="24" step="0.5" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                </div>
+              </div>
+
+              <!-- User Settings -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">User Settings</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Allow User Registration</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Require Email Verification</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Max Users per Mentor</label>
+                    <input type="number" value="50" min="1" max="200" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Session Timeout (minutes)</label>
+                    <input type="number" value="30" min="5" max="480" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security Settings -->
+        <div id="security-section" class="settings-section hidden">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold text-slate-900 mb-6">Security Settings</h3>
+            
+            <div class="space-y-6">
+              <!-- Password Policy -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Password Policy</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Minimum Password Length</label>
+                    <input type="number" value="8" min="6" max="20" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Require Special Characters</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Require Numbers</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Yes</option>
+                      <option>No</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Password Expiry (days)</label>
+                    <input type="number" value="90" min="30" max="365" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Two-Factor Authentication -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Two-Factor Authentication</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">Enable 2FA for Admins</p>
+                      <p class="text-xs text-slate-500">Require two-factor authentication for admin accounts</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">Enable 2FA for Mentors</p>
+                      <p class="text-xs text-slate-500">Require two-factor authentication for mentor accounts</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Session Management -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Session Management</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Max Concurrent Sessions</label>
+                    <input type="number" value="3" min="1" max="10" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Session Timeout (minutes)</label>
+                    <input type="number" value="30" min="5" max="480" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications Settings -->
+        <div id="notifications-section" class="settings-section hidden">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold text-slate-900 mb-6">Notification Settings</h3>
+            
+            <div class="space-y-6">
+              <!-- Email Notifications -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Email Notifications</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">New User Registration</p>
+                      <p class="text-xs text-slate-500">Notify admins when new users register</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">Contest Completion</p>
+                      <p class="text-xs text-slate-500">Notify when contests are completed</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">System Alerts</p>
+                      <p class="text-xs text-slate-500">Critical system notifications</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- In-App Notifications -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">In-App Notifications</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">Real-time Updates</p>
+                      <p class="text-xs text-slate-500">Show live notifications in the admin panel</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" checked class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">Sound Notifications</p>
+                      <p class="text-xs text-slate-500">Play sound for important notifications</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appearance Settings -->
+        <div id="appearance-section" class="settings-section hidden">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold text-slate-900 mb-6">Appearance Settings</h3>
+            
+            <div class="space-y-6">
+              <!-- Theme Settings -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Theme</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Default Theme</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Light</option>
+                      <option>Dark</option>
+                      <option>Auto</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Primary Color</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Blue</option>
+                      <option>Green</option>
+                      <option>Purple</option>
+                      <option>Orange</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Display Settings -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Display</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Items per Page</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>10</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Date Format</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>MM/DD/YYYY</option>
+                      <option>DD/MM/YYYY</option>
+                      <option>YYYY-MM-DD</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backup & Restore -->
+        <div id="backup-section" class="settings-section hidden">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold text-slate-900 mb-6">Backup & Restore</h3>
+            
+            <div class="space-y-6">
+              <!-- Backup Settings -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Backup Settings</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Auto Backup Frequency</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Daily</option>
+                      <option>Weekly</option>
+                      <option>Monthly</option>
+                      <option>Never</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Retention Period (days)</label>
+                    <input type="number" value="30" min="1" max="365" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Manual Backup -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Manual Backup</h4>
+                <div class="space-y-4">
+                  <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i data-lucide="download" class="w-4 h-4 inline mr-2"></i> Create Backup
+                  </button>
+                  <div class="text-sm text-slate-600">
+                    Last backup: <span class="font-medium">Dec 15, 2024 at 2:30 PM</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Restore -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Restore</h4>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Upload Backup File</label>
+                    <input type="file" accept=".zip,.sql" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  </div>
+                  <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                    <i data-lucide="upload" class="w-4 h-4 inline mr-2"></i> Restore from Backup
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Advanced Settings -->
+        <div id="advanced-section" class="settings-section hidden">
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-semibold text-slate-900 mb-6">Advanced Settings</h3>
+            
+            <div class="space-y-6">
+              <!-- System Settings -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">System Settings</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Debug Mode</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Disabled</option>
+                      <option>Enabled</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Log Level</label>
+                    <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <option>Error</option>
+                      <option>Warning</option>
+                      <option>Info</option>
+                      <option>Debug</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cache Settings -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Cache Settings</h4>
+                <div class="space-y-4">
+                  <button class="bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors">
+                    <i data-lucide="refresh-cw" class="w-4 h-4 inline mr-2"></i> Clear Cache
+                  </button>
+                  <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                    <i data-lucide="database" class="w-4 h-4 inline mr-2"></i> Optimize Database
+                  </button>
+                </div>
+              </div>
+
+              <!-- Maintenance Mode -->
+              <div>
+                <h4 class="text-lg font-medium text-slate-900 mb-4">Maintenance Mode</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-sm font-medium text-slate-900">Enable Maintenance Mode</p>
+                      <p class="text-xs text-slate-500">Temporarily disable the platform for maintenance</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" class="sr-only peer">
+                      <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Maintenance Message</label>
+                    <textarea rows="3" placeholder="Message to display during maintenance..." class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="mt-6 flex justify-end">
+          <button onclick="saveSettings()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            <i data-lucide="save" class="w-4 h-4 inline mr-2"></i> Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+    
+    function showSection(sectionName) {
+      // Hide all sections
+      document.querySelectorAll('.settings-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+      
+      // Show selected section
+      document.getElementById(sectionName + '-section').classList.remove('hidden');
+      
+      // Update navigation styling
+      document.querySelectorAll('nav button').forEach(button => {
+        button.className = 'w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50';
+      });
+      
+      // Highlight active button
+      event.target.className = 'w-full text-left px-3 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-700';
+    }
+    
+    function saveSettings() {
+      // This would save all settings to the database
+      alert('Settings saved successfully!');
+    }
+  </script>
+</body>
+</html> 

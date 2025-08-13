@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics - Community Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            Community Admin
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="admin-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="admin-users.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="users" class="w-4 h-4"></i> Users
+          </a>
+          <a href="admin-mentors.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Mentors
+          </a>
+          <a href="admin-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="admin-analytics.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 shadow-sm">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+          </a>
+          <a href="admin-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="award" class="w-4 h-4"></i> Leaderboard
+          </a>
+          <a href="admin-settings.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="settings" class="w-4 h-4"></i> Settings
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">System Analytics</h1>
+      <p class="text-lg text-slate-600">Comprehensive insights into platform performance, user engagement, and system metrics.</p>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Total Users</p>
+            <p class="text-2xl font-bold text-slate-900">2,847</p>
+            <p class="text-xs text-green-600">+12% from last month</p>
+          </div>
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="users" class="w-6 h-6 text-blue-600"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Active Contests</p>
+            <p class="text-2xl font-bold text-slate-900">25</p>
+            <p class="text-xs text-green-600">+5 from last month</p>
+          </div>
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="trophy" class="w-6 h-6 text-green-600"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Problems Solved</p>
+            <p class="text-2xl font-bold text-slate-900">18,247</p>
+            <p class="text-xs text-green-600">+1,247 this week</p>
+          </div>
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="target" class="w-6 h-6 text-purple-600"></i>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-600">Avg. Score</p>
+            <p class="text-2xl font-bold text-slate-900">847</p>
+            <p class="text-xs text-green-600">+23 from last month</p>
+          </div>
+          <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+            <i data-lucide="trending-up" class="w-6 h-6 text-amber-600"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <!-- User Growth Chart -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">User Growth</h3>
+        <div style="height: 300px;">
+          <canvas id="userGrowthChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Contest Performance Chart -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Contest Performance</h3>
+        <div style="height: 300px;">
+          <canvas id="contestPerformanceChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Analytics -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+      <!-- Top Performing Categories -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Top Categories</h3>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                <i data-lucide="target" class="w-4 h-4 text-white"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">DSA</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-slate-900">45%</div>
+              <div class="text-xs text-green-600">+12%</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                <i data-lucide="coffee" class="w-4 h-4 text-white"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">Java</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-slate-900">28%</div>
+              <div class="text-xs text-green-600">+8%</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                <i data-lucide="code" class="w-4 h-4 text-white"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">Python</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-slate-900">18%</div>
+              <div class="text-xs text-green-600">+5%</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                <i data-lucide="globe" class="w-4 h-4 text-white"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">Web Dev</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-slate-900">9%</div>
+              <div class="text-xs text-green-600">+3%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mentor Performance -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Mentor Performance</h3>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                D
+              </div>
+              <div>
+                <div class="text-sm font-medium text-slate-900">Dr. Smith</div>
+                <div class="text-xs text-slate-500">24 students</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-slate-900">4.8/5</div>
+              <div class="text-xs text-green-600">+0.2</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                J
+              </div>
+              <div>
+                <div class="text-sm font-medium text-slate-900">Dr. Johnson</div>
+                <div class="text-xs text-slate-500">18 students</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-slate-900">4.6/5</div>
+              <div class="text-xs text-green-600">+0.1</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                W
+              </div>
+              <div>
+                <div class="text-sm font-medium text-slate-900">Prof. Wilson</div>
+                <div class="text-xs text-slate-500">15 students</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-slate-900">4.7/5</div>
+              <div class="text-xs text-green-600">+0.3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- System Health -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">System Health</h3>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="server" class="w-4 h-4 text-green-600"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">Server Uptime</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-green-600">99.8%</div>
+              <div class="text-xs text-slate-500">Last 30 days</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="zap" class="w-4 h-4 text-blue-600"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">Response Time</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-blue-600">23ms</div>
+              <div class="text-xs text-slate-500">Average</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="database" class="w-4 h-4 text-amber-600"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">Database Load</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-amber-600">67%</div>
+              <div class="text-xs text-slate-500">Current</div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="hard-drive" class="w-4 h-4 text-purple-600"></i>
+              </div>
+              <span class="text-sm font-medium text-slate-900">Storage Used</span>
+            </div>
+            <div class="text-right">
+              <div class="text-sm font-semibold text-purple-600">1.2GB</div>
+              <div class="text-xs text-slate-500">Of 8GB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity & Quick Reports -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Recent Activity -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Recent Activity</h3>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+              <i data-lucide="user-plus" class="w-4 h-4 text-green-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">New user registered</p>
+              <p class="text-xs text-slate-500">Sarah Chen joined the platform</p>
+            </div>
+            <span class="text-xs text-slate-400">2h ago</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+              <i data-lucide="trophy" class="w-4 h-4 text-blue-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Contest completed</p>
+              <p class="text-xs text-slate-500">DSA Contest #1 finished with 45 participants</p>
+            </div>
+            <span class="text-xs text-slate-400">4h ago</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-purple-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Mentor assigned</p>
+              <p class="text-xs text-slate-500">Dr. Johnson assigned to Java Contest</p>
+            </div>
+            <span class="text-xs text-slate-400">6h ago</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+              <i data-lucide="target" class="w-4 h-4 text-amber-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">High score achieved</p>
+              <p class="text-xs text-slate-500">Priya Sharma scored 95% in Python Contest</p>
+            </div>
+            <span class="text-xs text-slate-400">8h ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Reports -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Reports</h3>
+        <div class="space-y-4">
+          <button onclick="downloadReport('User Engagement Report')" class="w-full text-left p-3 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-slate-900">User Engagement Report</p>
+                <p class="text-xs text-slate-500">Monthly user activity and participation</p>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </div>
+          </button>
+          <button onclick="downloadReport('Contest Performance Report')" class="w-full text-left p-3 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-slate-900">Contest Performance Report</p>
+                <p class="text-xs text-slate-500">Contest success rates and metrics</p>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </div>
+          </button>
+          <button onclick="downloadReport('Mentor Evaluation Report')" class="w-full text-left p-3 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-slate-900">Mentor Evaluation Report</p>
+                <p class="text-xs text-slate-500">Mentor performance and student feedback</p>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </div>
+          </button>
+          <button onclick="downloadReport('System Health Report')" class="w-full text-left p-3 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-medium text-slate-900">System Health Report</p>
+                <p class="text-xs text-slate-500">Platform performance and uptime</p>
+              </div>
+              <i data-lucide="download" class="w-4 h-4 text-slate-400"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+    
+    // Initialize charts when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeCharts();
+    });
+    
+    function initializeCharts() {
+      // User Growth Chart
+      const userGrowthCtx = document.getElementById('userGrowthChart');
+      if (userGrowthCtx) {
+        new Chart(userGrowthCtx.getContext('2d'), {
+          type: 'line',
+          data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+              label: 'Total Users',
+              data: [1200, 1350, 1500, 1650, 1800, 1950, 2100, 2250, 2400, 2550, 2700, 2847],
+              borderColor: 'rgb(59, 130, 246)',
+              backgroundColor: 'rgba(59, 130, 246, 0.1)',
+              tension: 0.4,
+              fill: true,
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                mode: 'index',
+                intersect: false,
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'white',
+                bodyColor: 'white',
+                borderColor: 'rgba(59, 130, 246, 0.5)',
+                borderWidth: 1
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  color: 'rgba(0, 0, 0, 0.1)'
+                },
+                ticks: {
+                  callback: function(value) {
+                    return value.toLocaleString();
+                  }
+                }
+              },
+              x: {
+                grid: {
+                  display: false
+                }
+              }
+            },
+            interaction: {
+              mode: 'nearest',
+              axis: 'x',
+              intersect: false
+            }
+          }
+        });
+      }
+
+      // Contest Performance Chart
+      const contestPerformanceCtx = document.getElementById('contestPerformanceChart');
+      if (contestPerformanceCtx) {
+        new Chart(contestPerformanceCtx.getContext('2d'), {
+          type: 'doughnut',
+          data: {
+            labels: ['DSA', 'Java', 'Python', 'Web Dev'],
+            datasets: [{
+              data: [45, 28, 18, 9],
+              backgroundColor: [
+                'rgb(59, 130, 246)',
+                'rgb(249, 115, 22)',
+                'rgb(34, 197, 94)',
+                'rgb(168, 85, 247)'
+              ],
+              borderWidth: 0,
+              hoverOffset: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  padding: 20,
+                  usePointStyle: true,
+                  pointStyle: 'circle'
+                }
+              },
+              tooltip: {
+                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                titleColor: 'white',
+                bodyColor: 'white',
+                callbacks: {
+                  label: function(context) {
+                    const label = context.label || '';
+                    const value = context.parsed;
+                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                    const percentage = ((value / total) * 100).toFixed(1);
+                    return `${label}: ${value} (${percentage}%)`;
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+    }
+    
+    function downloadReport(reportName) {
+      // Show loading state
+      const button = event.currentTarget;
+      const originalContent = button.innerHTML;
+      button.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin inline mr-2"></i> Generating...';
+      button.disabled = true;
+      
+      // Simulate report generation
+      setTimeout(() => {
+        // Create a mock download
+        const link = document.createElement('a');
+        link.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(generateMockReportData(reportName));
+        link.download = `${reportName.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Reset button
+        button.innerHTML = originalContent;
+        button.disabled = false;
+        
+        // Show success notification
+        showNotification(`${reportName} downloaded successfully!`, 'success');
+      }, 2000);
+    }
+    
+    function generateMockReportData(reportName) {
+      const headers = {
+        'User Engagement Report': 'User ID,Name,Email,Join Date,Contests Participated,Problems Solved,Average Score,Last Active',
+        'Contest Performance Report': 'Contest ID,Name,Category,Participants,Average Score,Completion Rate,Start Date,End Date',
+        'Mentor Evaluation Report': 'Mentor ID,Name,Specialization,Students Assigned,Average Rating,Feedback Count,Active Contests',
+        'System Health Report': 'Metric,Value,Status,Last Updated,Threshold,Alert Level'
+      };
+      
+      const data = {
+        'User Engagement Report': [
+          'U001,Rahul Kumar,rahul@example.com,2024-01-15,8,156,87.5,2024-12-15',
+          'U002,Priya Sharma,priya@example.com,2024-02-20,6,142,92.3,2024-12-14',
+          'U003,Amit Patel,amit@example.com,2024-03-10,7,134,78.9,2024-12-13'
+        ],
+        'Contest Performance Report': [
+          'C001,DSA Contest #1,DSA,45,78.5,92,2024-12-15,2024-12-20',
+          'C002,Java Contest #1,Java,38,82.1,88,2024-12-10,2024-12-15',
+          'C003,Python Contest #1,Python,42,85.7,95,2024-12-05,2024-12-10'
+        ],
+        'Mentor Evaluation Report': [
+          'M001,Dr. Smith,DSA,24,4.8,156,3',
+          'M002,Dr. Johnson,Java,18,4.6,142,2',
+          'M003,Prof. Wilson,Python,15,4.7,134,2'
+        ],
+        'System Health Report': [
+          'Server Uptime,99.8%,Healthy,2024-12-15 10:30,99.5%,Normal',
+          'Response Time,23ms,Good,2024-12-15 10:30,50ms,Normal',
+          'Database Load,67%,Warning,2024-12-15 10:30,80%,Normal',
+          'Storage Used,1.2GB,Good,2024-12-15 10:30,8GB,Normal'
+        ]
+      };
+      
+      return headers[reportName] + '\n' + data[reportName].join('\n');
+    }
+    
+    function showNotification(message, type) {
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white ${
+        type === 'success' ? 'bg-green-600' : 
+        type === 'error' ? 'bg-red-600' : 
+        'bg-blue-600'
+      }`;
+      notification.textContent = message;
+      
+      document.body.appendChild(notification);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+    
+    // Real-time data updates (simulated)
+    function updateMetrics() {
+      const metrics = document.querySelectorAll('.text-2xl.font-bold');
+      metrics.forEach(metric => {
+        const currentValue = parseInt(metric.textContent.replace(/,/g, ''));
+        const increment = Math.floor(Math.random() * 10) + 1;
+        const newValue = currentValue + increment;
+        metric.textContent = newValue.toLocaleString();
+      });
+    }
+    
+    // Update metrics every 30 seconds
+    setInterval(updateMetrics, 30000);
+  </script>
+</body>
+</html> 

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentor Management - SkillPort Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            Community Admin
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="admin-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="admin-users.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="users" class="w-4 h-4"></i> Users
+          </a>
+          <a href="admin-mentors.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 shadow-sm">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Mentors
+          </a>
+          <a href="admin-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="admin-analytics.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+          </a>
+          <a href="admin-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="award" class="w-4 h-4"></i> Leaderboard
+          </a>
+          <a href="admin-settings.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="settings" class="w-4 h-4"></i> Settings
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-slate-900 mb-2">Mentor Management</h1>
+          <p class="text-lg text-slate-600">Manage all mentors, create accounts, and assign contests.</p>
+        </div>
+        <button onclick="openAddMentorModal()" class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6 py-3 rounded-lg flex items-center gap-2">
+          <i data-lucide="user-plus" class="w-5 h-5"></i> Add New Mentor
+        </button>
+      </div>
+    </div>
+
+    <!-- Mentor Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="graduation-cap" class="w-8 h-8 text-green-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-green-600">18</div>
+        <div class="text-sm text-slate-600">Total Mentors</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="user-check" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-blue-600">16</div>
+        <div class="text-sm text-slate-600">Active Mentors</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="users" class="w-8 h-8 text-purple-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-purple-600">247</div>
+        <div class="text-sm text-slate-600">Total Students</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="trophy" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-amber-600">25</div>
+        <div class="text-sm text-slate-600">Active Contests</div>
+      </div>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="relative">
+            <input type="text" placeholder="Search mentors..." class="border border-slate-300 rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 w-64">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
+          </div>
+          <select class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+            <option>All Specializations</option>
+            <option>DSA Expert</option>
+            <option>Java Expert</option>
+            <option>Python Expert</option>
+            <option>Web Development</option>
+          </select>
+          <select class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+            <option>On Leave</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-slate-600">Sort by:</span>
+          <select class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+            <option>Name</option>
+            <option>Join Date</option>
+            <option>Students Count</option>
+            <option>Performance</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentors Table -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">All Mentors</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Mentor</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Email</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Specialization</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Students</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Contests</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Status</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-slate-200">
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    D
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Dr. Smith</div>
+                    <div class="text-sm text-slate-500">@drsmith</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">dr.smith@skillport.com</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">DSA Expert</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">24 students</div>
+                <div class="text-xs text-green-600">+3 this month</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">3 contests</div>
+                <div class="text-xs text-slate-500">2 active</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <div class="flex gap-2">
+                  <button onclick="editMentor('dr-smith')" class="text-blue-600 hover:text-blue-900">Edit</button>
+                  <button onclick="viewMentorProfile('dr-smith')" class="text-green-600 hover:text-green-900">View</button>
+                  <button onclick="assignContest('dr-smith')" class="text-purple-600 hover:text-purple-900">Assign</button>
+                  <button onclick="deleteMentor('dr-smith')" class="text-red-600 hover:text-red-900">Delete</button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    J
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Dr. Johnson</div>
+                    <div class="text-sm text-slate-500">@drjohnson</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">dr.johnson@skillport.com</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">Java Expert</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">18 students</div>
+                <div class="text-xs text-green-600">+2 this month</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">2 contests</div>
+                <div class="text-xs text-slate-500">1 active</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <div class="flex gap-2">
+                  <button onclick="editMentor('dr-johnson')" class="text-blue-600 hover:text-blue-900">Edit</button>
+                  <button onclick="viewMentorProfile('dr-johnson')" class="text-green-600 hover:text-green-900">View</button>
+                  <button onclick="assignContest('dr-johnson')" class="text-purple-600 hover:text-purple-900">Assign</button>
+                  <button onclick="deleteMentor('dr-johnson')" class="text-red-600 hover:text-red-900">Delete</button>
+                </div>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center text-white font-semibold mr-3">
+                    W
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-slate-900">Prof. Wilson</div>
+                    <div class="text-sm text-slate-500">@profwilson</div>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-slate-900">prof.wilson@skillport.com</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Python Expert</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">15 students</div>
+                <div class="text-xs text-green-600">+1 this month</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-semibold text-slate-900">1 contest</div>
+                <div class="text-xs text-slate-500">1 active</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">Active</span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <div class="flex gap-2">
+                  <button onclick="editMentor('prof-wilson')" class="text-blue-600 hover:text-blue-900">Edit</button>
+                  <button onclick="viewMentorProfile('prof-wilson')" class="text-green-600 hover:text-green-900">View</button>
+                  <button onclick="assignContest('prof-wilson')" class="text-purple-600 hover:text-purple-900">Assign</button>
+                  <button onclick="deleteMentor('prof-wilson')" class="text-red-600 hover:text-red-900">Delete</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add Mentor Modal -->
+  <div id="addMentorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div class="p-6 border-b border-slate-200">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-slate-900">Add New Mentor</h2>
+          <button onclick="closeAddMentorModal()" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <form id="addMentorForm">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+              <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+              <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Email</label>
+              <input type="email" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Username</label>
+              <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Password</label>
+              <input type="password" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Confirm Password</label>
+              <input type="password" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Specialization</label>
+              <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                <option value="">Select specialization</option>
+                <option value="dsa">DSA Expert</option>
+                <option value="java">Java Expert</option>
+                <option value="python">Python Expert</option>
+                <option value="web">Web Development</option>
+                <option value="mobile">Mobile Development</option>
+                <option value="ai">AI/ML Expert</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Experience (Years)</label>
+              <input type="number" min="1" max="50" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-slate-700 mb-2">Bio</label>
+              <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" rows="3" placeholder="Brief description of expertise and experience..."></textarea>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-slate-700 mb-2">Additional Notes</label>
+              <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" rows="2" placeholder="Any additional information..."></textarea>
+            </div>
+          </div>
+          
+          <div class="flex gap-3 mt-6">
+            <button type="button" onclick="closeAddMentorModal()" class="px-6 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors">
+              Cancel
+            </button>
+            <button type="submit" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+              Create Mentor
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assign Contest Modal -->
+  <div id="assignContestModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+      <div class="p-6 border-b border-slate-200">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-bold text-slate-900">Assign Contest</h2>
+          <button onclick="closeAssignContestModal()" class="text-slate-400 hover:text-slate-600">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <form id="assignContestForm">
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Select Contest</label>
+            <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+              <option value="">Choose a contest</option>
+              <option value="dsa-contest-1">DSA Contest #1 - Arrays & Strings</option>
+              <option value="java-contest-1">Java Contest #1 - OOP Basics</option>
+              <option value="python-contest-1">Python Contest #1 - Data Structures</option>
+              <option value="web-contest-1">Web Contest #1 - Frontend Basics</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-slate-700 mb-2">Assignment Notes</label>
+            <textarea class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" rows="3" placeholder="Any specific instructions for this assignment..."></textarea>
+          </div>
+          
+          <div class="flex gap-3">
+            <button type="button" onclick="closeAssignContestModal()" class="flex-1 px-4 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors">
+              Cancel
+            </button>
+            <button type="submit" class="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+              Assign Contest
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="deleteMentorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+      <div class="p-6">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+            <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-slate-900">Delete Mentor</h3>
+            <p class="text-sm text-slate-600">This action cannot be undone.</p>
+          </div>
+        </div>
+        <p class="text-sm text-slate-600 mb-6">Are you sure you want to delete <span id="deleteMentorName" class="font-semibold"></span>? This will permanently remove their account and reassign their students.</p>
+        <div class="flex gap-3">
+          <button onclick="closeDeleteMentorModal()" class="flex-1 px-4 py-2 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors">
+            Cancel
+          </button>
+          <button onclick="confirmDeleteMentor()" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+            Delete Mentor
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+    
+    let mentorToDelete = null;
+    let mentorToAssign = null;
+    
+    function openAddMentorModal() {
+      document.getElementById('addMentorModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeAddMentorModal() {
+      document.getElementById('addMentorModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      document.getElementById('addMentorForm').reset();
+    }
+    
+    function editMentor(mentorId) {
+      // This would open an edit modal for the specific mentor
+      alert(`Editing mentor: ${mentorId}`);
+    }
+    
+    function viewMentorProfile(mentorId) {
+      // This would open the mentor's profile/analytics
+      window.open(`mentor-dashboard.html?mentor=${mentorId}`, '_blank');
+    }
+    
+    function assignContest(mentorId) {
+      mentorToAssign = mentorId;
+      document.getElementById('assignContestModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeAssignContestModal() {
+      document.getElementById('assignContestModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      document.getElementById('assignContestForm').reset();
+      mentorToAssign = null;
+    }
+    
+    function deleteMentor(mentorId) {
+      mentorToDelete = mentorId;
+      const mentorName = mentorId.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      document.getElementById('deleteMentorName').textContent = mentorName;
+      document.getElementById('deleteMentorModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeDeleteMentorModal() {
+      document.getElementById('deleteMentorModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      mentorToDelete = null;
+    }
+    
+    function confirmDeleteMentor() {
+      if (mentorToDelete) {
+        // This would actually delete the mentor from the database
+        alert(`Mentor ${mentorToDelete} has been deleted successfully!`);
+        closeDeleteMentorModal();
+        // Refresh the page or update the table
+        location.reload();
+      }
+    }
+    
+    // Handle form submissions
+    document.getElementById('addMentorForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // This would create the mentor account
+      alert('Mentor account created successfully!');
+      closeAddMentorModal();
+      // Refresh the page or update the table
+      location.reload();
+    });
+    
+    document.getElementById('assignContestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // This would assign the contest to the mentor
+      alert(`Contest assigned to ${mentorToAssign} successfully!`);
+      closeAssignContestModal();
+      // Refresh the page or update the table
+      location.reload();
+    });
+    
+    // Close modals when clicking outside
+    document.getElementById('addMentorModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeAddMentorModal();
+      }
+    });
+    
+    document.getElementById('assignContestModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeAssignContestModal();
+      }
+    });
+    
+    document.getElementById('deleteMentorModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeDeleteMentorModal();
+      }
+    });
+  </script>
+</body>
+</html> 

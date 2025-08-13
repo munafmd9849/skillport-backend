@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - SkillPort Community</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div
+            class="w-8 h-8 bg-gradient-to-br from-red-600 to-pink-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            Community Admin
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="/community/admin/admin-dashboard.html"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-red-50 text-red-700 shadow-sm">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="/community/admin/admin-users.html"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="users" class="w-4 h-4"></i> Users
+          </a>
+          <a href="/community/admin/admin-mentors.html"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="graduation-cap" class="w-4 h-4"></i> Mentors
+          </a>
+          <a href="/community/admin/admin-contests.html"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="/community/admin/admin-analytics.html"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Analytics
+          </a>
+          <a href="/community/admin/admin-leaderboard.html"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="award" class="w-4 h-4"></i> Leaderboard
+          </a>
+          <a href="/community/admin/admin-settings.html"
+            class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="settings" class="w-4 h-4"></i> Settings
+          </a>
+        </div>
+        <!-- <div class="relative group">
+            <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="User" class="w-8 h-8 rounded-full border-2 border-red-500 cursor-pointer">
+            <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10 hidden group-hover:block">
+              <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Profile</a>
+              <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Settings</a>
+              <div class="border-t border-slate-200 my-1"></div>
+              <a href="#" onclick="logout(); return false;" class="block px-4 py-2 text-sm text-red-600 hover:bg-slate-100">Logout</a>
+            </div>
+          </div> -->
+      </div>
+    </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2">Admin Dashboard</h1>
+      <p class="text-lg text-slate-600">Manage the entire SkillPort Community platform, users, mentors, and contests.
+      </p>
+    </div>
+
+    <!-- System Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="users" class="w-8 h-8 text-blue-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-blue-600 stats-total-users">247</div>
+        <div class="text-sm text-slate-600">Total Users</div>
+        <div class="text-xs text-green-600 mt-1">+12 this week</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="graduation-cap" class="w-8 h-8 text-green-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-green-600 stats-total-mentors">18</div>
+        <div class="text-sm text-slate-600">Active Mentors</div>
+        <div class="text-xs text-green-600 mt-1">+3 this month</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="trophy" class="w-8 h-8 text-amber-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-amber-600 stats-total-contests">25</div>
+        <div class="text-sm text-slate-600">Active Contests</div>
+        <div class="text-xs text-green-600 mt-1">+5 this month</div>
+      </div>
+      <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+        <i data-lucide="target" class="w-8 h-8 text-purple-600 mx-auto mb-2"></i>
+        <div class="text-2xl font-bold text-purple-600 stats-total-problems">1,847</div>
+        <div class="text-sm text-slate-600">Problems Solved</div>
+        <div class="text-xs text-green-600 mt-1">+156 this week</div>
+      </div>
+    </div>
+
+    <!-- System Overview & Quick Actions -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <!-- System Overview -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">System Overview</h2>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+            <div class="flex items-center gap-3">
+              <i data-lucide="activity" class="w-5 h-5 text-blue-600"></i>
+              <span class="text-sm font-medium text-slate-900">System Status</span>
+            </div>
+            <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs system-status">All Systems
+              Operational</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+            <div class="flex items-center gap-3">
+              <i data-lucide="server" class="w-5 h-5 text-green-600"></i>
+              <span class="text-sm font-medium text-slate-900">Server Load</span>
+            </div>
+            <span class="text-sm text-slate-600 server-load">23%</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-amber-50 rounded-lg">
+            <div class="flex items-center gap-3">
+              <i data-lucide="database" class="w-5 h-5 text-amber-600"></i>
+              <span class="text-sm font-medium text-slate-900">Database</span>
+            </div>
+            <span class="text-sm text-slate-600 database-usage">1.2GB / 10GB</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+            <div class="flex items-center gap-3">
+              <i data-lucide="clock" class="w-5 h-5 text-purple-600"></i>
+              <span class="text-sm font-medium text-slate-900">Uptime</span>
+            </div>
+            <span class="text-sm text-slate-600 system-uptime">99.8%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">Recent Activity</h2>
+        <div class="space-y-4 recent-activity-list">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+              <i data-lucide="user-plus" class="w-4 h-4 text-green-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">New user registered</p>
+              <p class="text-xs text-slate-500">Rahul Kumar joined 2 hours ago</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+              <i data-lucide="trophy" class="w-4 h-4 text-blue-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">New contest created</p>
+              <p class="text-xs text-slate-500">DSA Contest #6 by Dr. Smith 4 hours ago</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-purple-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Mentor assigned</p>
+              <p class="text-xs text-slate-500">Dr. Johnson assigned to Java Contest 6 hours ago</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+              <i data-lucide="target" class="w-4 h-4 text-amber-600"></i>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Contest completed</p>
+              <p class="text-xs text-slate-500">Python Contest #3 ended with 45 participants 1 day ago</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div>
+      <h2 class="text-2xl font-bold text-slate-900 mb-6">Quick Actions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <a href="/community/admin/admin-users.html"
+          class="quick-action bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group"
+          data-action="manage-users">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+              <i data-lucide="users" class="w-6 h-6 text-blue-600"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">Manage Users</h3>
+              <p class="text-sm text-slate-600">Add, edit, and manage user accounts</p>
+            </div>
+          </div>
+        </a>
+        <a href="/community/admin/admin-mentors.html"
+          class="quick-action bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group"
+          data-action="manage-mentors">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+              <i data-lucide="graduation-cap" class="w-6 h-6 text-green-600"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">Manage Mentors</h3>
+              <p class="text-sm text-slate-600">Assign and manage mentor relationships</p>
+            </div>
+          </div>
+        </a>
+        <a href="/community/admin/admin-contests.html"
+          class="quick-action bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group"
+          data-action="manage-contests">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center group-hover:bg-amber-200 transition-colors">
+              <i data-lucide="trophy" class="w-6 h-6 text-amber-600"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">Manage Contests</h3>
+              <p class="text-sm text-slate-600">Create and manage coding contests</p>
+            </div>
+          </div>
+        </a>
+        <a href="/community/admin/admin-analytics.html"
+          class="quick-action bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group"
+          data-action="view-analytics">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+              <i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-600"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">View Analytics</h3>
+              <p class="text-sm text-slate-600">Platform performance and user insights</p>
+            </div>
+          </div>
+        </a>
+        <a href="/community/admin/admin-leaderboard.html"
+          class="quick-action bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer group"
+          data-action="view-leaderboard">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center group-hover:bg-red-200 transition-colors">
+              <i data-lucide="award" class="w-6 h-6 text-red-600"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">View Leaderboard</h3>
+              <p class="text-sm text-slate-600">Top performers and rankings</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Recent Users & Mentors -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+      <!-- Recent Users -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-slate-900">Recent Users</h2>
+          <a href="/community/admin/admin-users.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</a>
+        </div>
+        <div class="space-y-3 recent-users-list">
+          <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              R
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Rahul Kumar</p>
+              <p class="text-xs text-slate-500">rahul.kumar@email.com</p>
+            </div>
+            <span class="text-xs text-green-600">2 hours ago</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              P
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Priya Sharma</p>
+              <p class="text-xs text-slate-500">priya.sharma@email.com</p>
+            </div>
+            <span class="text-xs text-slate-500">1 day ago</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              A
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Amit Patel</p>
+              <p class="text-xs text-slate-500">amit.patel@email.com</p>
+            </div>
+            <span class="text-xs text-slate-500">2 days ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Mentors -->
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-slate-900">Recent Mentors</h2>
+          <a href="/community/admin/admin-mentors.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">View All</a>
+        </div>
+        <div class="space-y-3 recent-mentors-list">
+          <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              D
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Dr. Smith</p>
+              <p class="text-xs text-slate-500">DSA Expert • 24 students</p>
+            </div>
+            <span class="text-xs text-green-600">Active</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              J
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Dr. Johnson</p>
+              <p class="text-xs text-slate-500">Java Expert • 18 students</p>
+            </div>
+            <span class="text-xs text-green-600">Active</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 hover:bg-slate-50 rounded-lg">
+            <div
+              class="w-8 h-8 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
+              W
+            </div>
+            <div class="flex-1">
+              <p class="text-sm font-medium text-slate-900">Prof. Wilson</p>
+              <p class="text-xs text-slate-500">Python Expert • 15 students</p>
+            </div>
+            <span class="text-xs text-green-600">Active</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Authentication Script -->
+  <script src="../../auth.js"></script>
+
+  <!-- Admin Dashboard Script -->
+  <script src="admin-dashboard.js"></script>
+</body>
+
+</html>

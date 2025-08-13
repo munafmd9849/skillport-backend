@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Contest - SkillPort Community</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .modal-bg { background: rgba(30, 41, 59, 0.7); }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen">
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2 group">
+          <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-900 to-slate-600 bg-clip-text text-transparent">
+            SkillPort
+          </span>
+        </div>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="mentor-dashboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+          </a>
+          <a href="mentor-contests.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-700 shadow-sm">
+            <i data-lucide="trophy" class="w-4 h-4"></i> Contests
+          </a>
+          <a href="mentor-feedback.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="message-circle" class="w-4 h-4"></i> Feedback
+          </a>
+          <a href="mentor-leaderboard.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> Leaderboard
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-slate-900 mb-2" id="contest-title">DSA Contest #5</h1>
+      <p class="text-lg text-slate-600" id="contest-description">Manage problems and view leaderboard for this contest.</p>
+    </div>
+
+    <div class="mb-8">
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-bold text-slate-900">Problems / Tasks</h2>
+          <div class="flex items-center gap-2">
+            <button id="leaderboardBtn" class="p-2 rounded-lg border border-slate-200 hover:bg-slate-50" title="View Leaderboard">
+              <i data-lucide="bar-chart-3" class="w-5 h-5 text-blue-600"></i>
+            </button>
+            <button id="addTaskBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+              Add Task
+            </button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Title</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Description</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Topic</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Platform</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Link</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Difficulty</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Points</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr class="bg-gradient-to-r from-blue-50 to-cyan-50 hover:bg-blue-100">
+                <td class="px-6 py-4 font-semibold text-slate-900">Two Sum</td>
+                <td class="px-6 py-4 text-slate-700">Find indices of two numbers that add up to a target.</td>
+                <td class="px-6 py-4 text-blue-700 font-medium">Arrays</td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold">LC</div>
+                    <span class="text-slate-700">LeetCode</span>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-blue-600 underline"><a href="#" target="_blank">View</a></td>
+                <td class="px-6 py-4">
+                  <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">Easy</span>
+                </td>
+                <td class="px-6 py-4 font-bold text-blue-600">100</td>
+              </tr>
+              <tr class="bg-gradient-to-r from-purple-50 to-pink-50 hover:bg-pink-100">
+                <td class="px-6 py-4 font-semibold text-slate-900">Reverse Linked List</td>
+                <td class="px-6 py-4 text-slate-700">Reverse a singly linked list.</td>
+                <td class="px-6 py-4 text-purple-700 font-medium">Linked List</td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">CF</div>
+                    <span class="text-slate-700">Codeforces</span>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-blue-600 underline"><a href="#" target="_blank">View</a></td>
+                <td class="px-6 py-4">
+                  <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs font-semibold">Medium</span>
+                </td>
+                <td class="px-6 py-4 font-bold text-purple-600">200</td>
+              </tr>
+              <!-- More problems/tasks can be added here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Detail Modal (hidden by default) -->
+    <div id="userDetailModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-bg">
+      <div class="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full relative">
+        <button onclick="closeUserDetailModal()" class="absolute top-2 right-2 text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <h3 class="text-xl font-bold mb-4">User Details - <span id="modalUserName"></span></h3>
+        <table class="w-full mb-4">
+          <thead>
+            <tr>
+              <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Problem No</th>
+              <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Problem</th>
+              <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Topic</th>
+              <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Flagged</th>
+              <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Solved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-4 py-2">1</td>
+              <td class="px-4 py-2">Two Sum</td>
+              <td class="px-4 py-2">Arrays</td>
+              <td class="px-4 py-2">No</td>
+              <td class="px-4 py-2">Yes</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-2">2</td>
+              <td class="px-4 py-2">Reverse Linked List</td>
+              <td class="px-4 py-2">Linked List</td>
+              <td class="px-4 py-2">Yes</td>
+              <td class="px-4 py-2">No</td>
+            </tr>
+            <!-- More problems can be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Flagged Questions Modal (hidden by default) -->
+    <div id="flaggedModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-bg">
+      <div class="bg-white rounded-xl shadow-2xl p-0 max-w-lg w-full relative overflow-hidden">
+        <div class="bg-gradient-to-r from-red-500 to-pink-500 p-6 flex items-center gap-4">
+          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-white text-xl font-bold">N</div>
+          <div>
+            <h3 class="text-xl font-bold text-white mb-1 flex items-center gap-2">
+              <i data-lucide="flag" class="w-5 h-5"></i> Flagged Questions - <span id="modalFlaggedUser" class="ml-1">Neha Singh</span>
+            </h3>
+            <div class="text-sm text-pink-100">Review flagged problems and user code</div>
+          </div>
+          <button onclick="closeFlaggedModal()" class="ml-auto text-white hover:text-pink-200">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div class="p-6">
+          <table class="w-full mb-4">
+            <thead>
+              <tr>
+                <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Problem No</th>
+                <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Problem</th>
+                <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Topic</th>
+                <th class="px-4 py-2 text-left text-xs font-semibold text-slate-900">Code</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-gradient-to-r from-pink-50 to-red-50">
+                <td class="px-4 py-2 font-semibold text-red-600">2</td>
+                <td class="px-4 py-2 font-medium text-slate-900">Reverse Linked List</td>
+                <td class="px-4 py-2 text-pink-700">Linked List</td>
+                <td class="px-4 py-2">
+                  <pre class="bg-slate-900 text-green-400 rounded-lg p-3 text-xs overflow-x-auto">// User's submitted code here</pre>
+                </td>
+              </tr>
+              <!-- More flagged questions can be added here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Task Modal (hidden by default) -->
+    <div id="addTaskModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-bg">
+      <div class="bg-white rounded-xl shadow-2xl p-8 max-w-lg w-full relative">
+        <button onclick="closeAddTaskModal()" class="absolute top-2 right-2 text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <h3 class="text-2xl font-bold mb-6 text-slate-900 flex items-center gap-2">
+          <i data-lucide="plus-circle" class="w-6 h-6 text-blue-600"></i> Add New Task
+        </h3>
+        <form id="addTaskForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Title</label>
+            <input type="text" name="title" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Description</label>
+            <textarea name="description" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none"></textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Topic</label>
+              <input type="text" name="topic" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Platform</label>
+              <input type="text" name="platform" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Link</label>
+              <input type="url" name="link" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">Difficulty</label>
+              <select name="difficulty" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none">
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-1">Points</label>
+            <input type="number" name="points" min="0" required class="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 outline-none" />
+          </div>
+          <div class="flex justify-end mt-6">
+            <button type="button" onclick="closeAddTaskModal()" class="mr-3 px-4 py-2 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50">Cancel</button>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">Save Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Leaderboard Modal (hidden by default) -->
+    <div id="leaderboardModal" class="fixed inset-0 z-50 hidden items-center justify-center modal-bg">
+      <div class="bg-white rounded-xl shadow-2xl p-8 max-w-4xl w-full relative">
+        <button onclick="closeLeaderboardModal()" class="absolute top-2 right-2 text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <h3 class="text-2xl font-bold mb-6 text-slate-900 flex items-center gap-2">
+          <i data-lucide="bar-chart-3" class="w-6 h-6 text-blue-600"></i> Contest Leaderboard
+        </h3>
+        <div class="flex justify-end mb-4">
+          <a href="mentor-contest-leaderboard.html?contest=DSA5" class="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700">
+            <i data-lucide="bar-chart-3" class="w-4 h-4"></i> View Full Leaderboard
+          </a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full">
+            <thead class="bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Rank</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Name</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">User ID</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Problems Solved</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Flagged</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Success Rate</th>
+                <th class="px-6 py-4 text-left text-sm font-semibold text-slate-900">Score</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <!-- Top 1 - Gold -->
+              <tr class="bg-gradient-to-r from-yellow-50 to-amber-50 hover:bg-yellow-100">
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+                    <i data-lucide="crown" class="w-5 h-5 text-yellow-600"></i>
+                  </div>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold">P</div>
+                    <div>
+                      <div class="font-semibold text-slate-900">Priya Sharma</div>
+                      <div class="text-xs text-slate-500">@priyasharma</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-slate-600">U101</td>
+                <td class="px-6 py-4 font-semibold text-slate-900">5/5</td>
+                <td class="px-6 py-4">
+                  <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs cursor-pointer" onclick="showFlaggedModal('Priya Sharma')">2</span>
+                </td>
+                <td class="px-6 py-4 text-green-700 font-semibold">100%</td>
+                <td class="px-6 py-4 font-bold text-amber-600">850</td>
+              </tr>
+              <!-- Top 2 - Silver -->
+              <tr class="bg-gradient-to-r from-slate-50 to-gray-50 hover:bg-slate-100">
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-slate-400 to-gray-500 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+                    <i data-lucide="medal" class="w-5 h-5 text-slate-600"></i>
+                  </div>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-slate-400 to-gray-500 rounded-full flex items-center justify-center text-white font-semibold">R</div>
+                    <div>
+                      <div class="font-semibold text-slate-900">Rahul Kumar</div>
+                      <div class="text-xs text-slate-500">@rahulkumar</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-slate-600">U102</td>
+                <td class="px-6 py-4 font-semibold text-slate-900">5/5</td>
+                <td class="px-6 py-4">
+                  <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs cursor-pointer" onclick="showFlaggedModal('Rahul Kumar')">1</span>
+                </td>
+                <td class="px-6 py-4 text-green-700 font-semibold">100%</td>
+                <td class="px-6 py-4 font-bold text-slate-600">820</td>
+              </tr>
+              <!-- Top 3 - Bronze -->
+              <tr class="bg-gradient-to-r from-blue-50 to-indigo-50 hover:bg-blue-100 border-2 border-blue-200">
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                  </div>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-semibold">A</div>
+                    <div>
+                      <div class="font-semibold text-slate-900">Amit Patel</div>
+                      <div class="text-xs text-slate-500">@amitpatel</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-slate-600">U103</td>
+                <td class="px-6 py-4 font-semibold text-slate-900">3/5</td>
+                <td class="px-6 py-4">
+                  <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs cursor-pointer" onclick="showFlaggedModal('Amit Patel')">0</span>
+                </td>
+                <td class="px-6 py-4 text-green-700 font-semibold">60%</td>
+                <td class="px-6 py-4 font-bold text-blue-600">780</td>
+              </tr>
+              <!-- More participants -->
+              <tr>
+                <td class="px-6 py-4">
+                  <div class="w-8 h-8 bg-slate-300 rounded-full flex items-center justify-center text-slate-600 font-bold text-sm">4</div>
+                </td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center text-white font-semibold">N</div>
+                    <div>
+                      <div class="font-semibold text-slate-900">Neha Singh</div>
+                      <div class="text-xs text-slate-500">@nehasingh</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-slate-600">U104</td>
+                <td class="px-6 py-4 font-semibold text-slate-900">2/5</td>
+                <td class="px-6 py-4">
+                  <span class="bg-red-100 text-red-700 px-2 py-1 rounded text-xs cursor-pointer" onclick="showFlaggedModal('Neha Singh')">1</span>
+                </td>
+                <td class="px-6 py-4 text-green-700 font-semibold">40%</td>
+                <td class="px-6 py-4 font-bold text-slate-600">650</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script>
+    lucide.createIcons();
+    // Modal logic
+    function showUserDetailModal(userName) {
+      document.getElementById('modalUserName').textContent = userName;
+      document.getElementById('userDetailModal').classList.remove('hidden');
+      document.getElementById('userDetailModal').classList.add('flex');
+    }
+    function closeUserDetailModal() {
+      document.getElementById('userDetailModal').classList.add('hidden');
+      document.getElementById('userDetailModal').classList.remove('flex');
+    }
+    function showFlaggedModal(userName) {
+      document.getElementById('modalFlaggedUser').textContent = userName;
+      closeLeaderboardModal();
+      setTimeout(function() {
+        document.getElementById('flaggedModal').classList.remove('hidden');
+        document.getElementById('flaggedModal').classList.add('flex');
+      }, 200);
+    }
+    function closeFlaggedModal() {
+      document.getElementById('flaggedModal').classList.add('hidden');
+      document.getElementById('flaggedModal').classList.remove('flex');
+    }
+    // Add Task Modal logic
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const addTaskModal = document.getElementById('addTaskModal');
+    const addTaskForm = document.getElementById('addTaskForm');
+    const leaderboardBtn = document.getElementById('leaderboardBtn');
+    const leaderboardModal = document.getElementById('leaderboardModal');
+    function openAddTaskModal() {
+      addTaskModal.classList.remove('hidden');
+      addTaskModal.classList.add('flex');
+    }
+    function closeAddTaskModal() {
+      addTaskModal.classList.add('hidden');
+      addTaskModal.classList.remove('flex');
+      addTaskForm.reset();
+    }
+    addTaskBtn.addEventListener('click', openAddTaskModal);
+    addTaskForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(addTaskForm);
+      const row = document.createElement('tr');
+      row.className = 'bg-gradient-to-r from-blue-50 to-cyan-50 hover:bg-blue-100';
+      row.innerHTML = `
+        <td class="px-6 py-4 font-semibold text-slate-900">${formData.get('title')}</td>
+        <td class="px-6 py-4 text-slate-700">${formData.get('description')}</td>
+        <td class="px-6 py-4 text-blue-700 font-medium">${formData.get('topic')}</td>
+        <td class="px-6 py-4"><div class='flex items-center gap-2'><div class='w-8 h-8 bg-gradient-to-br from-orange-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold'>${formData.get('platform').slice(0,2).toUpperCase()}</div><span class='text-slate-700'>${formData.get('platform')}</span></div></td>
+        <td class="px-6 py-4 text-blue-600 underline"><a href="${formData.get('link')}" target="_blank">View</a></td>
+        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">${formData.get('difficulty')}</span></td>
+        <td class="px-6 py-4 font-bold text-blue-600">${formData.get('points')}</td>
+      `;
+      const table = addTaskForm.closest('main').querySelector('table');
+      table.querySelector('tbody').appendChild(row);
+      closeAddTaskModal();
+    });
+    leaderboardBtn.addEventListener('click', function() {
+      leaderboardModal.classList.remove('hidden');
+      leaderboardModal.classList.add('flex');
+    });
+    function closeLeaderboardModal() {
+      leaderboardModal.classList.add('hidden');
+      leaderboardModal.classList.remove('flex');
+    }
+  </script>
+</body>
+</html> 

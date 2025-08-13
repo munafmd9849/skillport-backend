@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillPort - Coding Practice Tracking Platform</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#fbbf24',
+                        gold: '#ffd700',
+                        premium: '#a5b4fc',
+                        dark: '#1f2937',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter">
+    <!-- Animated Background Circles -->
+    <div class="bg-animated-circles">
+        <span class="circle1"></span>
+        <span class="circle2"></span>
+        <span class="circle3"></span>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" href="#">
+                <i class="fas fa-code me-2"></i>SkillPort
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">How it Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-outline-primary" href="#" onclick="openLoginModal('login')">Login</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary" href="#" onclick="openLoginModal('signup')"><i class="fas fa-star me-2"></i>Get Started</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section position-relative" style="padding-top: 100px;">
+        <div class="container position-relative z-2">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content glass">
+                        <span class="badge bg-primary bg-opacity-10 text-primary fw-bold mb-3 px-3 py-2">Your Coding Journey Starts Here</span>
+                        <h1 class="display-3 fw-bold mb-4">
+                            Track Your <span class="text-gradient">Coding Journey</span>
+                        </h1>
+                        <p class="lead mb-4 text-secondary">
+                            SkillPort helps students track their progress on LeetCode, GeeksforGeeks, and other coding platforms. 
+                            Mentors and admins can monitor progress with detailed analytics and insights.
+                        </p>
+                        <div class="hero-buttons mb-4">
+                            <a href="#" onclick="openLoginModal('signup')" class="btn btn-primary btn-lg me-3 mb-3 px-4 py-3 fw-bold shadow-lg">
+                                <i class="fas fa-rocket me-2"></i>Get Started Free
+                            </a>
+                            <a href="#demo" class="btn btn-outline-light btn-lg mb-3 px-4 py-3">
+                                <i class="fas fa-play-circle me-2"></i>Watch Demo
+                            </a>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-4">
+                            <div class="d-flex">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle border border-3 border-white" width="40" height="40" alt="User" style="margin-right: -10px; z-index: 1">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle border border-3 border-white" width="40" height="40" alt="User" style="margin-right: -10px; z-index: 2">
+                                <img src="https://randomuser.me/api/portraits/men/68.jpg" class="rounded-circle border border-3 border-white" width="40" height="40" alt="User" style="margin-right: -10px; z-index: 3">
+                            </div>
+                            <span class="text-muted"><span class="text-primary fw-bold">1,200+</span> developers joined last month</span>
+                        </div>
+                        <div class="hero-stats mt-3">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <h3 class="fw-bold">10K+</h3>
+                                        <p class="mb-0">Students</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <h3 class="fw-bold">500+</h3>
+                                        <p class="mb-0">Mentors</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <h3 class="fw-bold">50K+</h3>
+                                        <p class="mb-0">Submissions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 position-relative">
+                    <div class="position-absolute top-0 end-0 translate-middle-y bg-warning rounded-circle" style="width: 150px; height: 150px; filter: blur(60px); opacity: 0.6; z-index: -1;"></div>
+                    <div class="position-absolute bottom-0 start-0 translate-middle bg-primary rounded-circle" style="width: 200px; height: 200px; filter: blur(80px); opacity: 0.4; z-index: -1;"></div>
+                    <div class="hero-image text-center">
+                        <img src="https://via.placeholder.com/600x400/6366f1/ffffff?text=SkillPort+Dashboard" 
+                             alt="SkillPort Dashboard" class="img-fluid rounded-3 shadow-lg glass" style="max-width: 90%;">
+                    </div>
+                    <div class="position-absolute top-0 end-0 bg-white rounded-lg shadow-lg p-3 d-none d-md-flex align-items-center" style="width: 180px; transform: translate(20px, -20px);">
+                        <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3">
+                            <i class="fas fa-check text-success"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 small fw-bold">Skills Verified</p>
+                            <p class="mb-0 small text-muted">by mentors</p>
+                        </div>
+                    </div>
+                    <div class="position-absolute bottom-0 start-50 bg-white rounded-lg shadow-lg p-3 d-none d-md-block" style="width: 200px; transform: translate(-50%, 40px);">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-2">
+                                <i class="fas fa-code text-primary"></i>
+                            </div>
+                            <p class="mb-0 small fw-bold">Coding Challenges</p>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mb-0 small text-end mt-1"><span class="text-primary fw-bold">75%</span> completed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold mb-3">Why Choose SkillPort?</h2>
+                    <p class="lead text-muted">
+                        Comprehensive coding practice tracking with advanced analytics and mentorship features
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-chart-line fa-3x"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Progress Tracking</h5>
+                            <p class="card-text text-muted">
+                                Track your coding submissions across multiple platforms with detailed progress analytics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-users fa-3x"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Mentorship</h5>
+                            <p class="card-text text-muted">
+                                Connect with mentors who can guide your learning journey and provide personalized feedback.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-trophy fa-3x"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Leaderboards</h5>
+                            <p class="card-text text-muted">
+                                Compete with peers on leaderboards and stay motivated with friendly competition.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-robot fa-3x"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Browser Extension</h5>
+                            <p class="card-text text-muted">
+                                Automatic submission detection on LeetCode and GeeksforGeeks with our browser extension.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-chart-bar fa-3x"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Analytics</h5>
+                            <p class="card-text text-muted">
+                                Detailed analytics and insights to understand your strengths and areas for improvement.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-shield-alt fa-3x"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Secure & Private</h5>
+                            <p class="card-text text-muted">
+                                Your data is secure and private. We use industry-standard encryption and security practices.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold mb-3">How SkillPort Works</h2>
+                    <p class="lead text-muted">
+                        Get started in minutes with our simple and intuitive platform
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="step-card text-center">
+                        <div class="step-number mb-3">
+                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center" 
+                                  style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">1</span>
+                        </div>
+                        <h5 class="fw-bold">Sign Up</h5>
+                        <p class="text-muted">Create your account and choose your role (Student, Mentor, or Admin)</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="step-card text-center">
+                        <div class="step-number mb-3">
+                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center" 
+                                  style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">2</span>
+                        </div>
+                        <h5 class="fw-bold">Install Extension</h5>
+                        <p class="text-muted">Install our browser extension to automatically track your submissions</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="step-card text-center">
+                        <div class="step-number mb-3">
+                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center" 
+                                  style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">3</span>
+                        </div>
+                        <h5 class="fw-bold">Start Coding</h5>
+                        <p class="text-muted">Solve problems on LeetCode, GeeksforGeeks, or other platforms</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="step-card text-center">
+                        <div class="step-number mb-3">
+                            <span class="rounded-circle d-inline-flex align-items-center justify-content-center" 
+                                  style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">4</span>
+                        </div>
+                        <h5 class="fw-bold">Track Progress</h5>
+                        <p class="text-muted">Monitor your progress, view analytics, and get insights</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Roles Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold mb-3">Perfect for Everyone</h2>
+                    <p class="lead text-muted">
+                        Whether you're a student, mentor, or administrator, SkillPort has you covered
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="role-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="role-icon mb-3">
+                                <i class="fas fa-user-graduate fa-3x"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Students</h4>
+                            <ul class="list-unstyled text-start">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Track coding submissions</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>View progress analytics</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Access batch resources</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Compete on leaderboards</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="role-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="role-icon mb-3">
+                                <i class="fas fa-chalkboard-teacher fa-3x"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Mentors</h4>
+                            <ul class="list-unstyled text-start">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Monitor student progress</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>View batch analytics</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Provide feedback</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Track performance trends</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="role-card card h-100 border-0">
+                        <div class="card-body text-center p-4">
+                            <div class="role-icon mb-3">
+                                <i class="fas fa-user-shield fa-3x"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Admins</h4>
+                            <ul class="list-unstyled text-start">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Create and manage batches</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Assign mentors and students</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>View system analytics</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Manage user accounts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-5 fw-bold mb-3">Ready to Start Your Coding Journey?</h2>
+                    <p class="lead mb-4">
+                        Join thousands of students and mentors who are already using SkillPort to improve their coding skills.
+                    </p>
+                    <a href="#" onclick="openLoginModal()" class="btn btn-light btn-lg me-3">
+                        <i class="fas fa-rocket me-2"></i>Get Started
+                    </a>
+                    <a href="#contact" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-3">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-code me-2"></i>SkillPort
+                    </h5>
+                    <p class="text-muted">
+                        The ultimate platform for tracking coding practice progress and connecting students with mentors.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-3">
+                    <h6 class="fw-bold mb-3">Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#features" class="text-muted text-decoration-none">Features</a></li>
+                        <li><a href="#pricing" class="text-muted text-decoration-none">Pricing</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">API</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-3">
+                    <h6 class="fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">About</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-3">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Contact</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Status</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-3">
+                    <h6 class="fw-bold mb-3">Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Privacy</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Terms</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0 text-muted">&copy; 2024 SkillPort. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="text-muted me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-muted me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-muted me-3"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-muted"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 1.5rem; overflow: hidden;">
+                <div class="modal-header border-0 bg-gradient-to-r from-indigo-600 to-blue-500 text-white">
+                    <h5 class="modal-title fw-bold">SkillPort</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-5">
+                    <div class="text-center mb-4">
+                        <div class="rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 shadow-lg p-3 flex items-center justify-center mx-auto mb-4" style="width: 80px; height: 80px;">
+                            <i class="fas fa-code text-white fa-2x"></i>
+                        </div>
+                        <h3 class="fw-bold text-dark mb-2">Welcome to SkillPort</h3>
+                        <p class="text-muted">Sign in to continue your coding journey</p>
+                    </div>
+                    
+                    <!-- Google Login Button -->
+                    <button id="google-login" class="btn btn-light w-100 mb-4 d-flex align-items-center justify-content-center gap-2 py-2 shadow-sm border">
+                        <svg width="20" height="20" viewBox="0 0 48 48">
+                            <g><path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.7 32.9 30.1 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.1 8.1 2.9l6.1-6.1C34.5 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 19.5-7.6 21-17.5H24v-8.5h20.5z"></path></g>
+                        </svg>
+                        <span class="fw-medium">Continue with Google</span>
+                    </button>
+                    
+                    <div class="d-flex align-items-center gap-2 my-4">
+                        <hr class="flex-grow-1 border-gray-300">
+                        <span class="text-muted small fw-medium">OR</span>
+                        <hr class="flex-grow-1 border-gray-300">
+                    </div>
+                    
+                    <!-- Toggle Buttons -->
+                    <div class="d-flex justify-content-center mb-4 bg-light rounded-pill p-1">
+                        <button id="toggle-login" class="btn rounded-pill fw-bold text-white bg-primary px-4 py-2 flex-grow-1">Login</button>
+                        <button id="toggle-signup" class="btn rounded-pill fw-bold text-muted px-4 py-2 flex-grow-1">Sign Up</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label class="form-label fw-medium text-gray-700">Email Address</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-envelope text-muted"></i></span>
+                                <input type="email" id="login-email" class="form-control bg-light border-start-0" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <label class="form-label fw-medium text-gray-700 mb-0">Password</label>
+                                <a href="#" class="text-primary text-decoration-none small">Forgot password?</a>
+                            </div>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-lock text-muted"></i></span>
+                                <input type="password" id="login-password" class="form-control bg-light border-start-0" placeholder="Enter your password" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3 shadow-sm">Login</button>
+                        <div id="login-error" class="alert alert-danger text-center mt-2 d-none"></div>
+                    </form>
+                    
+                    <!-- Signup Form -->
+                    <form id="signup-form" class="d-none">
+                        <div class="mb-3">
+                            <label class="form-label fw-medium text-gray-700">Full Name</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-user text-muted"></i></span>
+                                <input type="text" id="signup-name" class="form-control bg-light border-start-0" placeholder="John Doe" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium text-gray-700">Email Address</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-envelope text-muted"></i></span>
+                                <input type="email" id="signup-email" class="form-control bg-light border-start-0" placeholder="you@example.com" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium text-gray-700">Password</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-lock text-muted"></i></span>
+                                <input type="password" id="signup-password" class="form-control bg-light border-start-0" placeholder="Create a strong password" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium text-gray-700">Role</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-user-tag text-muted"></i></span>
+                                <select id="signup-role" class="form-select bg-light border-start-0" required>
+                                    <option value="student">Student</option>
+                                    <option value="mentor">Mentor</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-medium text-gray-700">Username</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-at text-muted"></i></span>
+                                <input type="text" id="signup-username" class="form-control bg-light border-start-0" placeholder="Choose a username" required>
+                            </div>
+                            <div id="username-hint" class="form-text small text-primary">Auto-suggested from email, but you can edit.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold py-2 mb-3 shadow-sm">Create Account</button>
+                        <div id="signup-error" class="alert alert-danger text-center mt-2 d-none"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    
+    <script>
+        // Login Modal Functions
+        function openLoginModal(formType = 'login') {
+            const modal = new bootstrap.Modal(document.getElementById('loginModal'));
+            modal.show();
+            
+            // Switch to the requested form type
+            if (formType === 'signup') {
+                setTimeout(() => {
+                    document.getElementById('toggle-signup').click();
+                }, 300);
+            }
+        }
+        
+        // Toggle between login and signup forms
+        const loginBtn = document.getElementById('toggle-login');
+        const signupBtn = document.getElementById('toggle-signup');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        
+        loginBtn.onclick = () => {
+            loginBtn.classList.add('text-white', 'bg-primary');
+            loginBtn.classList.remove('text-muted', 'bg-transparent');
+            signupBtn.classList.remove('text-white', 'bg-primary');
+            signupBtn.classList.add('text-muted', 'bg-transparent');
+            loginForm.classList.remove('d-none');
+            signupForm.classList.add('d-none');
+        };
+        
+        signupBtn.onclick = () => {
+            signupBtn.classList.add('text-white', 'bg-primary');
+            signupBtn.classList.remove('text-muted', 'bg-transparent');
+            loginBtn.classList.remove('text-white', 'bg-primary');
+            loginBtn.classList.add('text-muted', 'bg-transparent');
+            signupForm.classList.remove('d-none');
+            loginForm.classList.add('d-none');
+        };
+        
+        // Username suggestion logic
+        const signupEmail = document.getElementById('signup-email');
+        const signupUsername = document.getElementById('signup-username');
+        
+        signupEmail.addEventListener('input', async function() {
+            let base = signupEmail.value.split('@')[0].toLowerCase().replace(/[^a-z0-9._]/g, '').slice(0, 20);
+            if (!base) return;
+            
+            let username = base;
+            let i = 1;
+            while (await usernameExists(username)) {
+                username = base.slice(0, 20 - String(i).length) + i;
+                i++;
+            }
+            signupUsername.value = username;
+        });
+        
+        async function usernameExists(username) {
+            // Placeholder: always return false. Replace with real API call if needed.
+            return false;
+        }
+        
+        // Google login placeholder
+        document.getElementById('google-login').onclick = function() {
+            alert('Google login coming soon!');
+        };
+        
+        // Login and signup form handling is now in auth.js
+    </script>
+    
+    <!-- Authentication Script -->
+    <script src="auth.js"></script>
+</body>
+</html>
